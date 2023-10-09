@@ -1,11 +1,15 @@
-import FilmCard from '../film-card/film-card';
-import PageContent from '../page-content/page-content';
+import {MainPage} from '../../pages/main-page/main-page';
 
-function App() {
-  return (<div>
-    <FilmCard/>
-    <PageContent/>
-          </div>);
+export type AppProps = {
+  name: string;
+  genre: string;
+  trailerDateRelease: number;
+
 }
 
-export default App;
+export function App({name, genre, trailerDateRelease}: AppProps) {
+  return (
+    <div>
+      <MainPage name={name} genre={genre} trailerDateRelease={trailerDateRelease}/>
+    </div>);
+}
