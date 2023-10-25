@@ -1,20 +1,18 @@
+import {JSX} from 'react';
+import {FilmsList} from '../../components/small-film-card/films-list';
+import {Film, films} from '../../mocks/films';
+
+
 type MainPageProps = {
-  name: string;
-  genre: string;
-  trailerDateRelease: number;
+  mainFilm: Film;
 }
 
-
-import {JSX} from 'react';
-import SmallFilmCard from '../../components/small-film-card/small-film-card';
-import {films} from '../../mocks/films';
-
-export function MainPage({name, genre, trailerDateRelease}: MainPageProps): JSX.Element {
+export function MainPage({mainFilm}: MainPageProps): JSX.Element {
   return(
     <>
       <section className="film-card">
         <div className="film-card__bg">
-          <img src="img/bg-the-grand-budapest-hotel.jpg" alt={name}/>
+          <img src={mainFilm.filmImg} alt={mainFilm.name}/>
         </div>
 
         <h1 className="visually-hidden">WTW</h1>
@@ -43,16 +41,16 @@ export function MainPage({name, genre, trailerDateRelease}: MainPageProps): JSX.
         <div className="film-card__wrap">
           <div className="film-card__info">
             <div className="film-card__poster">
-              <img src="img/the-grand-budapest-hotel-poster.jpg" alt={name.concat(' ', 'poster')} width="218"
+              <img src={mainFilm.filmImg} alt={mainFilm.name.concat(' ', 'poster')} width="218"
                 height="327"
               />
             </div>
 
             <div className="film-card__desc">
-              <h2 className="film-card__title">{name}</h2>
+              <h2 className="film-card__title">{mainFilm.name}</h2>
               <p className="film-card__meta">
-                <span className="film-card__genre">{genre}</span>
-                <span className="film-card__year">{trailerDateRelease}</span>
+                <span className="film-card__genre">{mainFilm.genre}</span>
+                <span className="film-card__year">{mainFilm.released}</span>
               </p>
 
               <div className="film-card__buttons">
@@ -112,11 +110,7 @@ export function MainPage({name, genre, trailerDateRelease}: MainPageProps): JSX.
             </li>
           </ul>
 
-          <div className="catalog__films-list">
-            {
-              films.map((film) => <SmallFilmCard key={film.name} name={film.name} imgSrc={film.filmImg}/>)
-            }
-          </div>
+          <FilmsList mainFilmId={mainFilm.id} films={films}/>
 
           <div className="catalog__more">
             <button className="catalog__button" type="button">Show more</button>
