@@ -3,7 +3,7 @@ import {JSX} from 'react';
 export function PlayerPausePage(): JSX.Element {
   return(
     <div className="player">
-      <video src="#" className="player__video" poster="markup/img/player-poster.jpg"></video>
+      <video src="player-pages/player-pause-page#" className="player__video" poster="markup/img/player-poster.jpg"></video>
 
       <button type="button" className="player__exit">Exit</button>
 

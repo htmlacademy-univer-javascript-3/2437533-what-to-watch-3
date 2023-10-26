@@ -1,4 +1,5 @@
 import {JSX} from 'react';
+import {Link} from 'react-router-dom';
 
 type SmallFilmCardProps = {
   filmId: number;
@@ -26,7 +27,7 @@ function SmallFilmCard({imgSrc, name, filmId, onFilmCard}: SmallFilmCardProps): 
         />
       </div>
       <h3 className="small-film-card__title">
-        <a className="small-film-card__link" href="film-page.html">{name}</a>
+        <Link className="small-film-card__link" to="film-page.html">{name}</Link>
       </h3>
     </article>
   );

@@ -1,6 +1,8 @@
 import {JSX} from 'react';
 import {FilmsList} from '../../components/small-film-card/films-list';
 import {Film, films} from '../../mocks/films';
+import {Link} from 'react-router-dom';
+import {Footer} from '../../components/footer/footer';
 
 
 type MainPageProps = {
@@ -79,34 +81,34 @@ export function MainPage({mainFilm}: MainPageProps): JSX.Element {
 
           <ul className="catalog__genres-list">
             <li className="catalog__genres-item catalog__genres-item--active">
-              <a href="src/pages#" className="catalog__genres-link">All genres</a>
+              <Link to={'src/pages#'} className={'catalog__genres-link'}>All genres</Link>
             </li>
             <li className="catalog__genres-item">
-              <a href="src/pages#" className="catalog__genres-link">Comedies</a>
+              <Link to={'src/pages#'} className={'catalog__genres-link'}>Comedies</Link>
             </li>
             <li className="catalog__genres-item">
-              <a href="src/pages#" className="catalog__genres-link">Crime</a>
+              <Link to={'src/pages#'} className={'catalog__genres-link'}>Crime</Link>
             </li>
             <li className="catalog__genres-item">
-              <a href="src/pages#" className="catalog__genres-link">Documentary</a>
+              <Link to={'src/pages#'} className={'catalog__genres-link'}>Documentary</Link>
             </li>
             <li className="catalog__genres-item">
-              <a href="src/pages#" className="catalog__genres-link">Dramas</a>
+              <Link to={'src/pages#'} className={'catalog__genres-link'}>Dramas</Link>
             </li>
             <li className="catalog__genres-item">
-              <a href="src/pages#" className="catalog__genres-link">Horror</a>
+              <Link to={'src/pages#'} className={'catalog__genres-link'}>Horror</Link>
             </li>
             <li className="catalog__genres-item">
-              <a href="src/pages#" className="catalog__genres-link">Kids & Family</a>
+              <Link to={'src/pages#'} className={'catalog__genres-link'}>Kids & Family</Link>
             </li>
             <li className="catalog__genres-item">
-              <a href="src/pages#" className="catalog__genres-link">Romance</a>
+              <Link to={'src/pages#'} className={'catalog__genres-link'}>Romance</Link>
             </li>
             <li className="catalog__genres-item">
-              <a href="src/pages#" className="catalog__genres-link">Sci-Fi</a>
+              <Link to={'src/pages#'} className={'catalog__genres-link'}>Sci-Fi</Link>
             </li>
             <li className="catalog__genres-item">
-              <a href="src/pages#" className="catalog__genres-link">Thrillers</a>
+              <Link to={'src/pages#'} className={'catalog__genres-link'}>Thrillers</Link>
             </li>
           </ul>
 
@@ -117,19 +119,7 @@ export function MainPage({mainFilm}: MainPageProps): JSX.Element {
           </div>
         </section>
 
-        <footer className="page-footer">
-          <div className="logo">
-            <a className="logo__link logo__link--light">
-              <span className="logo__letter logo__letter--1">W</span>
-              <span className="logo__letter logo__letter--2">T</span>
-              <span className="logo__letter logo__letter--3">W</span>
-            </a>
-          </div>
-
-          <div className="copyright">
-            <p>© 2019 What to watch Ltd.</p>
-          </div>
-        </footer>
+        <Footer></Footer>
       </div>
     </>
   );
