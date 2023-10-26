@@ -1,55 +1,62 @@
 import {JSX} from 'react';
+import {Film} from '../../mocks/films';
+import {Link} from 'react-router-dom';
+import {CommentSendForm} from "../../components/comment-send-form/comment-send-form";
 
-export function AddReviewPage(): JSX.Element {
+type AddReviewPageProps = {
+  film: Film;
+}
+
+export function AddReviewPage({film}: AddReviewPageProps): JSX.Element {
   return(
-    <div className="user-page">
-      <header className="page-header user-page__head">
-        <div className="logo">
-          <a href="main.html" className="logo__link">
-            <span className="logo__letter logo__letter--1">W</span>
-            <span className="logo__letter logo__letter--2">T</span>
-            <span className="logo__letter logo__letter--3">W</span>
-          </a>
+    <section className="film-card film-card--full">
+      <div className="film-card__header">
+        <div className="film-card__bg">
+          <img src={film.filmImg} alt={film.name}/>
         </div>
 
-        <h1 className="page-title user-page__title">Sign in</h1>
-      </header>
+        <h1 className="visually-hidden">WTW</h1>
 
-      <div className="sign-in user-page__content">
-        <form action="#" className="sign-in__form">
-          <div className="sign-in__fields">
-            <div className="sign-in__field">
-              <input className="sign-in__input" type="email" placeholder="Email address" name="user-email"
-                id="user-email"
-              />
-              <label className="sign-in__label visually-hidden" htmlFor="user-email">Email address</label>
-            </div>
-            <div className="sign-in__field">
-              <input className="sign-in__input" type="password" placeholder="Password" name="user-password"
-                id="user-password"
-              />
-              <label className="sign-in__label visually-hidden" htmlFor="user-password">Password</label>
-            </div>
+        <header className="page-header">
+          <div className="logo">
+            <Link to="/" className="logo__link">
+              <span className="logo__letter logo__letter--1">W</span>
+              <span className="logo__letter logo__letter--2">T</span>
+              <span className="logo__letter logo__letter--3">W</span>
+            </Link>
           </div>
-          <div className="sign-in__submit">
-            <button className="sign-in__btn" type="submit">Sign in</button>
-          </div>
-        </form>
+
+          <nav className="breadcrumbs">
+            <ul className="breadcrumbs__list">
+              <li className="breadcrumbs__item">
+                <Link to={'film-page.html'} className={'breadcrumbs__link'}>{film.name}</Link>
+              </li>
+              <li className="breadcrumbs__item">
+                <a className="breadcrumbs__link">Add review</a>
+              </li>
+            </ul>
+          </nav>
+
+          <ul className="user-block">
+            <li className="user-block__item">
+              <div className="user-block__avatar">
+                <img src="img/avatar.jpg" alt="User avatar" width="63" height="63"/>
+              </div>
+            </li>
+            <li className="user-block__item">
+              <a className="user-block__link">Sign out</a>
+            </li>
+          </ul>
+        </header>
+
+        <div className="film-card__poster film-card__poster--small">
+          <img src={film.filmImg} alt={film.name} width="218"
+            height="327"
+          />
+        </div>
       </div>
 
-      <footer className="page-footer">
-        <div className="logo">
-          <a href="main.html" className="logo__link logo__link--light">
-            <span className="logo__letter logo__letter--1">W</span>
-            <span className="logo__letter logo__letter--2">T</span>
-            <span className="logo__letter logo__letter--3">W</span>
-          </a>
-        </div>
-
-        <div className="copyright">
-          <p>© 2019 What to watch Ltd.</p>
-        </div>
-      </footer>
-    </div>
+      <CommentSendForm></CommentSendForm>
+    </section>
   );
 }

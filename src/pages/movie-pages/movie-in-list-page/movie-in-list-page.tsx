@@ -1,6 +1,8 @@
 import {JSX} from 'react';
+import {Footer} from '../../../components/footer/footer';
+import {Link} from 'react-router-dom';
 
-export function MoviePage(): JSX.Element {
+export function MovieInListPage(): JSX.Element {
   return(
     <>
       <section className="film-card film-card--full">
@@ -48,8 +50,8 @@ export function MoviePage(): JSX.Element {
                   <span>Play</span>
                 </button>
                 <button className="btn btn--list film-card__button" type="button">
-                  <svg viewBox="0 0 19 20" width="19" height="20">
-                    <use xlinkHref="#add"></use>
+                  <svg viewBox="0 0 18 14" width="18" height="14">
+                    <use xlinkHref="#in-list"></use>
                   </svg>
                   <span>My list</span>
                   <span className="film-card__count">9</span>
@@ -72,13 +74,13 @@ export function MoviePage(): JSX.Element {
               <nav className="film-nav film-card__nav">
                 <ul className="film-nav__list">
                   <li className="film-nav__item film-nav__item--active">
-                    <a href="#" className="film-nav__link">Overview</a>
+                    <a href="movie-pages/movie-in-list-page#" className="film-nav__link">Overview</a>
                   </li>
                   <li className="film-nav__item">
-                    <a href="#" className="film-nav__link">Details</a>
+                    <a href="movie-pages/movie-in-list-page#" className="film-nav__link">Details</a>
                   </li>
                   <li className="film-nav__item">
-                    <a href="#" className="film-nav__link">Reviews</a>
+                    <a href="movie-pages/movie-in-list-page#" className="film-nav__link">Reviews</a>
                   </li>
                 </ul>
               </nav>
@@ -92,23 +94,26 @@ export function MoviePage(): JSX.Element {
               </div>
 
               <div className="film-card__text">
-                <p>In the 1930s, the Grand Budapest Hotel is a popular European ski resort, presided over by concierge
+                <p>
+                  In the 1930s, the Grand Budapest Hotel is a popular European ski resort, presided over by concierge
                   {/* eslint-disable-next-line react/no-unescaped-entities */}
-                Gustave H. (Ralph Fiennes). Zero, a junior lobby boy, becomes Gustave's friend and protege.
+                  Gustave H. (Ralph Fiennes). Zero, a junior lobby boy, becomes Gustave's friend and protege.
                 </p>
 
-                {/* eslint-disable-next-line react/no-unescaped-entities */}
-                <p>Gustave prides himself on providing first-class service to the hotel's guests, including satisfying the
+                <p>
                   {/* eslint-disable-next-line react/no-unescaped-entities */}
-                sexual needs of the many elderly women who stay there. When one of Gustave's lovers dies mysteriously,
-                Gustave finds himself the recipient of a priceless painting and the chief suspect in her murder.
+                  Gustave prides himself on providing first-class service to the hotel's guests, including satisfying
+                  {/* eslint-disable-next-line react/no-unescaped-entities */}
+                  the sexual needs of the many elderly women who stay there. When one of Gustave's lovers dies
+                  mysteriously, Gustave finds himself the recipient of a priceless painting and the chief suspect in her
+                  murder.
                 </p>
 
                 <p className="film-card__director"><strong>Director: Wes Anderson</strong></p>
 
                 <p className="film-card__starring">
                   <strong>Starring: Bill Murray, Edward Norton, Jude Law, Willem Dafoe
-                and other
+                  and other
                   </strong>
                 </p>
               </div>
@@ -129,7 +134,9 @@ export function MoviePage(): JSX.Element {
                 />
               </div>
               <h3 className="small-film-card__title">
-                <a className="small-film-card__link" href="film-page.html">Fantastic Beasts: The Crimes of Grindelwald</a>
+                <Link className="small-film-card__link" to="film-page.html">Fantastic Beasts: The Crimes of
+                  Grindelwald
+                </Link>
               </h3>
             </article>
 
@@ -138,7 +145,7 @@ export function MoviePage(): JSX.Element {
                 <img src="img/bohemian-rhapsody.jpg" alt="Bohemian Rhapsody" width="280" height="175"/>
               </div>
               <h3 className="small-film-card__title">
-                <a className="small-film-card__link" href="film-page.html">Bohemian Rhapsody</a>
+                <Link className="small-film-card__link" to="film-page.html">Bohemian Rhapsody</Link>
               </h3>
             </article>
 
@@ -147,7 +154,7 @@ export function MoviePage(): JSX.Element {
                 <img src="img/macbeth.jpg" alt="Macbeth" width="280" height="175"/>
               </div>
               <h3 className="small-film-card__title">
-                <a className="small-film-card__link" href="film-page.html">Macbeth</a>
+                <Link className="small-film-card__link" to="film-page.html">Macbeth</Link>
               </h3>
             </article>
 
@@ -156,25 +163,13 @@ export function MoviePage(): JSX.Element {
                 <img src="img/aviator.jpg" alt="Aviator" width="280" height="175"/>
               </div>
               <h3 className="small-film-card__title">
-                <a className="small-film-card__link" href="film-page.html">Aviator</a>
+                <Link className="small-film-card__link" to="film-page.html">Aviator</Link>
               </h3>
             </article>
           </div>
         </section>
 
-        <footer className="page-footer">
-          <div className="logo">
-            <a href="main.html" className="logo__link logo__link--light">
-              <span className="logo__letter logo__letter--1">W</span>
-              <span className="logo__letter logo__letter--2">T</span>
-              <span className="logo__letter logo__letter--3">W</span>
-            </a>
-          </div>
-
-          <div className="copyright">
-            <p>© 2019 What to watch Ltd.</p>
-          </div>
-        </footer>
+        <Footer></Footer>
       </div>
     </>
   );

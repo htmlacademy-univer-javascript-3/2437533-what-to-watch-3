@@ -1,20 +1,20 @@
+import {JSX} from 'react';
+import {FilmsList} from '../../components/small-film-card/films-list';
+import {Film, films} from '../../mocks/films';
+import {Link} from 'react-router-dom';
+import {Footer} from '../../components/footer/footer';
+
+
 type MainPageProps = {
-  name: string;
-  genre: string;
-  trailerDateRelease: number;
+  mainFilm: Film;
 }
 
-
-import {JSX} from 'react';
-import SmallFilmCard from '../../components/small-film-card/small-film-card';
-import {films} from '../../mocks/films';
-
-export function MainPage({name, genre, trailerDateRelease}: MainPageProps): JSX.Element {
+export function MainPage({mainFilm}: MainPageProps): JSX.Element {
   return(
     <>
       <section className="film-card">
         <div className="film-card__bg">
-          <img src="img/bg-the-grand-budapest-hotel.jpg" alt={name}/>
+          <img src={mainFilm.filmImg} alt={mainFilm.name}/>
         </div>
 
         <h1 className="visually-hidden">WTW</h1>
@@ -43,16 +43,16 @@ export function MainPage({name, genre, trailerDateRelease}: MainPageProps): JSX.
         <div className="film-card__wrap">
           <div className="film-card__info">
             <div className="film-card__poster">
-              <img src="img/the-grand-budapest-hotel-poster.jpg" alt={name.concat(' ', 'poster')} width="218"
+              <img src={mainFilm.filmImg} alt={mainFilm.name.concat(' ', 'poster')} width="218"
                 height="327"
               />
             </div>
 
             <div className="film-card__desc">
-              <h2 className="film-card__title">{name}</h2>
+              <h2 className="film-card__title">{mainFilm.name}</h2>
               <p className="film-card__meta">
-                <span className="film-card__genre">{genre}</span>
-                <span className="film-card__year">{trailerDateRelease}</span>
+                <span className="film-card__genre">{mainFilm.genre}</span>
+                <span className="film-card__year">{mainFilm.released}</span>
               </p>
 
               <div className="film-card__buttons">
@@ -81,61 +81,45 @@ export function MainPage({name, genre, trailerDateRelease}: MainPageProps): JSX.
 
           <ul className="catalog__genres-list">
             <li className="catalog__genres-item catalog__genres-item--active">
-              <a href="src/pages#" className="catalog__genres-link">All genres</a>
+              <Link to={'#'} className={'catalog__genres-link'}>All genres</Link>
             </li>
             <li className="catalog__genres-item">
-              <a href="src/pages#" className="catalog__genres-link">Comedies</a>
+              <Link to={'#'} className={'catalog__genres-link'}>Comedies</Link>
             </li>
             <li className="catalog__genres-item">
-              <a href="src/pages#" className="catalog__genres-link">Crime</a>
+              <Link to={'#'} className={'catalog__genres-link'}>Crime</Link>
             </li>
             <li className="catalog__genres-item">
-              <a href="src/pages#" className="catalog__genres-link">Documentary</a>
+              <Link to={'#'} className={'catalog__genres-link'}>Documentary</Link>
             </li>
             <li className="catalog__genres-item">
-              <a href="src/pages#" className="catalog__genres-link">Dramas</a>
+              <Link to={'#'} className={'catalog__genres-link'}>Dramas</Link>
             </li>
             <li className="catalog__genres-item">
-              <a href="src/pages#" className="catalog__genres-link">Horror</a>
+              <Link to={'#'} className={'catalog__genres-link'}>Horror</Link>
             </li>
             <li className="catalog__genres-item">
-              <a href="src/pages#" className="catalog__genres-link">Kids & Family</a>
+              <Link to={'#'} className={'catalog__genres-link'}>Kids & Family</Link>
             </li>
             <li className="catalog__genres-item">
-              <a href="src/pages#" className="catalog__genres-link">Romance</a>
+              <Link to={'#'} className={'catalog__genres-link'}>Romance</Link>
             </li>
             <li className="catalog__genres-item">
-              <a href="src/pages#" className="catalog__genres-link">Sci-Fi</a>
+              <Link to={'#'} className={'catalog__genres-link'}>Sci-Fi</Link>
             </li>
             <li className="catalog__genres-item">
-              <a href="src/pages#" className="catalog__genres-link">Thrillers</a>
+              <Link to={'#'} className={'catalog__genres-link'}>Thrillers</Link>
             </li>
           </ul>
 
-          <div className="catalog__films-list">
-            {
-              films.map((film) => <SmallFilmCard key={film.name} name={film.name} imgSrc={film.filmImg}/>)
-            }
-          </div>
+          <FilmsList mainFilmId={mainFilm.id} films={films}/>
 
           <div className="catalog__more">
             <button className="catalog__button" type="button">Show more</button>
           </div>
         </section>
 
-        <footer className="page-footer">
-          <div className="logo">
-            <a className="logo__link logo__link--light">
-              <span className="logo__letter logo__letter--1">W</span>
-              <span className="logo__letter logo__letter--2">T</span>
-              <span className="logo__letter logo__letter--3">W</span>
-            </a>
-          </div>
-
-          <div className="copyright">
-            <p>© 2019 What to watch Ltd.</p>
-          </div>
-        </footer>
+        <Footer></Footer>
       </div>
     </>
   );

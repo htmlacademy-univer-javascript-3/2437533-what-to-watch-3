@@ -1,9 +1,13 @@
 import {JSX} from 'react';
 
-export function PlayerPage(): JSX.Element {
+type PlayerProps = {
+  videoLink: string;
+}
+
+export function PlayerPage({videoLink}: PlayerProps): JSX.Element {
   return(
     <div className="player">
-      <video src="#" className="player__video" poster="img/player-poster.jpg"></video>
+      <video src={videoLink} className="player__video" poster="img/player-poster.jpg"></video>
 
       <button type="button" className="player__exit">Exit</button>
 

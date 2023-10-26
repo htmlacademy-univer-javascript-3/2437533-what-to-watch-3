@@ -1,23 +1,31 @@
 import {JSX} from 'react';
+import {Footer} from '../../../components/footer/footer';
+import {Link} from 'react-router-dom';
+import {Film, films} from '../../../mocks/films';
+import {FilmsList} from '../../../components/small-film-card/films-list';
 
-export function MovieDetailsPage(): JSX.Element {
+type MovieDetailsPageProps = {
+  mainFilm: Film;
+}
+
+export function MovieDetailsPage({mainFilm}: MovieDetailsPageProps): JSX.Element {
   return(
     <>
       <section className="film-card film-card--full">
         <div className="film-card__hero">
           <div className="film-card__bg">
-            <img src="img/bg-the-grand-budapest-hotel.jpg" alt="The Grand Budapest Hotel"/>
+            <img src={mainFilm.filmImg} alt={mainFilm.name}/>
           </div>
 
           <h1 className="visually-hidden">WTW</h1>
 
           <header className="page-header film-card__head">
             <div className="logo">
-              <a href="main.html" className="logo__link">
+              <Link to="/" className="logo__link">
                 <span className="logo__letter logo__letter--1">W</span>
                 <span className="logo__letter logo__letter--2">T</span>
                 <span className="logo__letter logo__letter--3">W</span>
-              </a>
+              </Link>
             </div>
 
             <ul className="user-block">
@@ -34,10 +42,10 @@ export function MovieDetailsPage(): JSX.Element {
 
           <div className="film-card__wrap">
             <div className="film-card__desc">
-              <h2 className="film-card__title">The Grand Budapest Hotel</h2>
+              <h2 className="film-card__title">{mainFilm.name}</h2>
               <p className="film-card__meta">
-                <span className="film-card__genre">Drama</span>
-                <span className="film-card__year">2014</span>
+                <span className="film-card__genre">{mainFilm.genre}</span>
+                <span className="film-card__year">{mainFilm.released}</span>
               </p>
 
               <div className="film-card__buttons">
@@ -54,7 +62,7 @@ export function MovieDetailsPage(): JSX.Element {
                   <span>My list</span>
                   <span className="film-card__count">9</span>
                 </button>
-                <a href="add-review.html" className="btn film-card__button">Add review</a>
+                <Link to="add-review.html" className="btn film-card__button">Add review</Link>
               </div>
             </div>
           </div>
@@ -72,13 +80,13 @@ export function MovieDetailsPage(): JSX.Element {
               <nav className="film-nav film-card__nav">
                 <ul className="film-nav__list">
                   <li className="film-nav__item">
-                    <a href="#" className="film-nav__link">Overview</a>
+                    <Link to="movie-pages/movie-details-page#" className="film-nav__link">Overview</Link>
                   </li>
                   <li className="film-nav__item film-nav__item--active">
-                    <a href="#" className="film-nav__link">Details</a>
+                    <Link to="movie-pages/movie-details-page#" className="film-nav__link">Details</Link>
                   </li>
                   <li className="film-nav__item">
-                    <a href="#" className="film-nav__link">Reviews</a>
+                    <Link to="movie-pages/movie-details-page#" className="film-nav__link">Reviews</Link>
                   </li>
                 </ul>
               </nav>
@@ -111,15 +119,15 @@ export function MovieDetailsPage(): JSX.Element {
                 <div className="film-card__text-col">
                   <p className="film-card__details-item">
                     <strong className="film-card__details-name">Run Time</strong>
-                    <span className="film-card__details-value">1h 39m</span>
+                    <span className="film-card__details-value">{mainFilm.runTime}</span>
                   </p>
                   <p className="film-card__details-item">
                     <strong className="film-card__details-name">Genre</strong>
-                    <span className="film-card__details-value">Comedy</span>
+                    <span className="film-card__details-value">{mainFilm.genre}</span>
                   </p>
                   <p className="film-card__details-item">
                     <strong className="film-card__details-name">Released</strong>
-                    <span className="film-card__details-value">2014</span>
+                    <span className="film-card__details-value">{mainFilm.released}</span>
                   </p>
                 </div>
               </div>
@@ -131,63 +139,9 @@ export function MovieDetailsPage(): JSX.Element {
       <div className="page-content">
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
-
-          <div className="catalog__films-list">
-            <article className="small-film-card catalog__films-card">
-              <div className="small-film-card__image">
-                <img src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
-                  alt="Fantastic Beasts: The Crimes of Grindelwald" width="280" height="175"
-                />
-              </div>
-              <h3 className="small-film-card__title">
-                <a className="small-film-card__link" href="film-page.html">Fantastic Beasts: The Crimes of
-                  Grindelwald
-                </a>
-              </h3>
-            </article>
-
-            <article className="small-film-card catalog__films-card">
-              <div className="small-film-card__image">
-                <img src="img/bohemian-rhapsody.jpg" alt="Bohemian Rhapsody" width="280" height="175"/>
-              </div>
-              <h3 className="small-film-card__title">
-                <a className="small-film-card__link" href="film-page.html">Bohemian Rhapsody</a>
-              </h3>
-            </article>
-
-            <article className="small-film-card catalog__films-card">
-              <div className="small-film-card__image">
-                <img src="img/macbeth.jpg" alt="Macbeth" width="280" height="175"/>
-              </div>
-              <h3 className="small-film-card__title">
-                <a className="small-film-card__link" href="film-page.html">Macbeth</a>
-              </h3>
-            </article>
-
-            <article className="small-film-card catalog__films-card">
-              <div className="small-film-card__image">
-                <img src="img/aviator.jpg" alt="Aviator" width="280" height="175"/>
-              </div>
-              <h3 className="small-film-card__title">
-                <a className="small-film-card__link" href="film-page.html">Aviator</a>
-              </h3>
-            </article>
-          </div>
+          <FilmsList mainFilmId={mainFilm.id} films={films}/>
         </section>
-
-        <footer className="page-footer">
-          <div className="logo">
-            <a href="main.html" className="logo__link logo__link--light">
-              <span className="logo__letter logo__letter--1">W</span>
-              <span className="logo__letter logo__letter--2">T</span>
-              <span className="logo__letter logo__letter--3">W</span>
-            </a>
-          </div>
-
-          <div className="copyright">
-            <p>© 2019 What to watch Ltd.</p>
-          </div>
-        </footer>
+        <Footer></Footer>
       </div>
     </>
   );
