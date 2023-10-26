@@ -81,34 +81,34 @@ export function MainPage({mainFilm}: MainPageProps): JSX.Element {
 
           <ul className="catalog__genres-list">
             <li className="catalog__genres-item catalog__genres-item--active">
-              <Link to={'src/pages#'} className={'catalog__genres-link'}>All genres</Link>
+              <Link to={'#'} className={'catalog__genres-link'}>All genres</Link>
             </li>
             <li className="catalog__genres-item">
-              <Link to={'src/pages#'} className={'catalog__genres-link'}>Comedies</Link>
+              <Link to={'#'} className={'catalog__genres-link'}>Comedies</Link>
             </li>
             <li className="catalog__genres-item">
-              <Link to={'src/pages#'} className={'catalog__genres-link'}>Crime</Link>
+              <Link to={'#'} className={'catalog__genres-link'}>Crime</Link>
             </li>
             <li className="catalog__genres-item">
-              <Link to={'src/pages#'} className={'catalog__genres-link'}>Documentary</Link>
+              <Link to={'#'} className={'catalog__genres-link'}>Documentary</Link>
             </li>
             <li className="catalog__genres-item">
-              <Link to={'src/pages#'} className={'catalog__genres-link'}>Dramas</Link>
+              <Link to={'#'} className={'catalog__genres-link'}>Dramas</Link>
             </li>
             <li className="catalog__genres-item">
-              <Link to={'src/pages#'} className={'catalog__genres-link'}>Horror</Link>
+              <Link to={'#'} className={'catalog__genres-link'}>Horror</Link>
             </li>
             <li className="catalog__genres-item">
-              <Link to={'src/pages#'} className={'catalog__genres-link'}>Kids & Family</Link>
+              <Link to={'#'} className={'catalog__genres-link'}>Kids & Family</Link>
             </li>
             <li className="catalog__genres-item">
-              <Link to={'src/pages#'} className={'catalog__genres-link'}>Romance</Link>
+              <Link to={'#'} className={'catalog__genres-link'}>Romance</Link>
             </li>
             <li className="catalog__genres-item">
-              <Link to={'src/pages#'} className={'catalog__genres-link'}>Sci-Fi</Link>
+              <Link to={'#'} className={'catalog__genres-link'}>Sci-Fi</Link>
             </li>
             <li className="catalog__genres-item">
-              <Link to={'src/pages#'} className={'catalog__genres-link'}>Thrillers</Link>
+              <Link to={'#'} className={'catalog__genres-link'}>Thrillers</Link>
             </li>
           </ul>
 

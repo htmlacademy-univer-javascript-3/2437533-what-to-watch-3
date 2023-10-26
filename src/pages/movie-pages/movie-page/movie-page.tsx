@@ -1,5 +1,5 @@
 import {JSX} from 'react';
-import {Footer} from "../../../components/footer/footer";
+import {Footer} from '../../../components/footer/footer';
 
 export function MoviePage(): JSX.Element {
   return(
