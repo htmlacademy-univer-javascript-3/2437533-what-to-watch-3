@@ -1,0 +1,1 @@
+export const TIMEOUT_BEFORE_PLAYING = 1000;

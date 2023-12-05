@@ -1,18 +1,29 @@
 import {JSX} from 'react';
-import {Film} from '../../mocks/films';
-import {Link} from 'react-router-dom';
-import {CommentSendForm} from "../../components/comment-send-form/comment-send-form";
+import {Link, useParams} from 'react-router-dom';
+import {CommentSendForm} from '../../components/comment-send-form/comment-send-form';
+import { useState } from 'react';
+import {Film} from '../../types/film-type';
+
 
 type AddReviewPageProps = {
-  film: Film;
+  films: Film[];
 }
 
-export function AddReviewPage({film}: AddReviewPageProps): JSX.Element {
+export function AddReviewPage({films: films}: AddReviewPageProps): JSX.Element {
+  const [filmRating, setFilmRating] = useState(0);
+  if (filmRating !== undefined) {
+    //на будущее с отправкой формы
+  }
+
+  const params = useParams();
+  const paramsId = parseInt(params.id || '1', 10);
+  const movie = films.find((f) => f.id === paramsId) || films[0];
+
   return(
     <section className="film-card film-card--full">
       <div className="film-card__header">
         <div className="film-card__bg">
-          <img src={film.filmImg} alt={film.name}/>
+          <img src={movie.filmImg} alt={movie.name}/>
         </div>
 
         <h1 className="visually-hidden">WTW</h1>
@@ -29,7 +40,7 @@ export function AddReviewPage({film}: AddReviewPageProps): JSX.Element {
           <nav className="breadcrumbs">
             <ul className="breadcrumbs__list">
               <li className="breadcrumbs__item">
-                <Link to={'film-page.html'} className={'breadcrumbs__link'}>{film.name}</Link>
+                <Link to={'film-page.html'} className={'breadcrumbs__link'}>{movie.name}</Link>
               </li>
               <li className="breadcrumbs__item">
                 <a className="breadcrumbs__link">Add review</a>
@@ -50,13 +61,13 @@ export function AddReviewPage({film}: AddReviewPageProps): JSX.Element {
         </header>
 
         <div className="film-card__poster film-card__poster--small">
-          <img src={film.filmImg} alt={film.name} width="218"
+          <img src={movie.filmImg} alt={movie.name} width="218"
             height="327"
           />
         </div>
       </div>
 
-      <CommentSendForm></CommentSendForm>
+      <CommentSendForm onAnswer={(rating) => setFilmRating(rating)}></CommentSendForm>
     </section>
   );
 }
