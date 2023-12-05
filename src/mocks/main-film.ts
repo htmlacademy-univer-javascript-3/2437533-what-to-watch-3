@@ -6,6 +6,8 @@ export const mainFilm: Film = {
   filmImg: 'img/bg-the-grand-budapest-hotel.jpg',
   runTime: '2h 03m',
   genre: 'Drama',
+  director: 'Wes Anderson',
+  starring: 'Bill Murray, Edward Norton, Jude Law, Willem Dafoe',
   released: 2014
 };
 
