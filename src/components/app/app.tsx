@@ -9,7 +9,6 @@ import {PlayerPage} from '../../pages/player-pages/player-page/player-page';
 import {PrivateRoute} from '../private-route/private-route';
 import {films} from '../../mocks/films';
 import {Film} from '../../types/film-type';
-import {videoLink} from '../../consts/player-link';
 import {AppRoutes} from '../../consts/appRoutes';
 import {MovieDetailsPage} from '../../pages/movie-pages/movie-details-page/movie-details-page';
 import {AddReviewPage} from '../../pages/add-review-page/add-review-page';
@@ -35,7 +34,7 @@ export function App(props: AppProps) {
           <Route path={AppRoutes.Films} element={<MoviePage films={films}/>} />
           <Route path={AppRoutes.Reviews} element={<MovieReviewsPage films={films}/>} />
           <Route path={AppRoutes.Details} element={<MovieDetailsPage films={films}/>} />
-          <Route path={AppRoutes.Player} element={<PlayerPage videoLink={videoLink}/>} />
+          <Route path={AppRoutes.Player} element={<PlayerPage films={films}/>} />
           <Route path={AppRoutes.AddReview} element={<AddReviewPage films={films}/>} />
         </Route>
         <Route path="*" element={<NotFoundPage />}/>

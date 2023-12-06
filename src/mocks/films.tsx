@@ -1,5 +1,6 @@
 import {Film} from '../types/film-type';
 import {Genre} from '../consts/genres';
+import {reviewsMocks} from "./reviews";
 
 export const films: Film[] = [
   {
@@ -16,7 +17,8 @@ export const films: Film[] = [
       'Gustave prides himself on providing first-class service to the hotel\'s guests, including satisfying the sexual needs of the many elderly women who stay there. When one of Gustave\'s lovers dies mysteriously, Gustave finds himself the recipient of a priceless painting and the chief suspect in her murder.',
     ratingLevel: 'Very good',
     ratingScore: 8.9,
-    videoLink: 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4'
+    videoLink: 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
+    reviews: reviewsMocks,
   },
   {
     id: 2,
@@ -32,7 +34,8 @@ export const films: Film[] = [
       'Gustave prides himself on providing first-class service to the hotel\'s guests, including satisfying the sexual needs of the many elderly women who stay there. When one of Gustave\'s lovers dies mysteriously, Gustave finds himself the recipient of a priceless painting and the chief suspect in her murder.',
     ratingLevel: 'Very good',
     ratingScore: 8.0,
-    videoLink: 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4'
+    videoLink: 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
+    reviews: reviewsMocks,
   },
   {
     id: 3,
@@ -46,7 +49,8 @@ export const films: Film[] = [
     filmDesc: 'Macbeth is a 2015 epic historical drama film directed by Justin Kurzel and written for the screen by Todd Louiso, Jacob Koskoff, and Michael Lesslie, based on William Shakespeare\'s eponymous play.',
     ratingLevel: 'Good',
     ratingScore: 7.1,
-    videoLink: 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4'
+    videoLink: 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
+    reviews: reviewsMocks,
   },
   {
     id: 4,
@@ -60,7 +64,8 @@ export const films: Film[] = [
     filmDesc: 'The Aviator is a 2004 epic biographical drama film directed by Martin Scorsese and written by John Logan.',
     ratingLevel: 'Good',
     ratingScore: 7.6,
-    videoLink: 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4'
+    videoLink: 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
+    reviews: reviewsMocks,
   },
   {
     id: 5,
@@ -74,7 +79,8 @@ export const films: Film[] = [
     filmDesc: 'We Need to Talk About Kevin is a 2011 psychological thriller drama film directed by Lynne Ramsay from a screenplay she co-wrote with Rory Stewart Kinnear, based on the 2003 novel of the same name by Lionel Shriver. A long process of development and financing began in 2005, with filming commencing in April 2010.',
     ratingLevel: 'Good',
     ratingScore: 7.2,
-    videoLink: 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4'
+    videoLink: 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
+    reviews: reviewsMocks,
   },
   {
     id: 6,
@@ -88,7 +94,8 @@ export const films: Film[] = [
     filmDesc: 'What We Do in the Shadows is a 2014 New Zealand mockumentary horror comedy film written and directed by Jemaine Clement and Taika Waititi and the first installment in the What We Do in the Shadows franchise. ',
     ratingLevel: 'Good',
     ratingScore: 7.5,
-    videoLink: 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4'
+    videoLink: 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
+    reviews: reviewsMocks,
   },
   {
     id: 7,
@@ -102,7 +109,8 @@ export const films: Film[] = [
     filmDesc: 'The Revenant is a 2015 American Western action drama film directed by Alejandro G. Iñárritu. The screenplay by Mark L. Smith and Iñárritu is based in part on Michael Punke\'s 2002 novel The Revenant, which describes frontiersman Hugh Glass\'s experiences in 1823, and which is based on the 1915 poem The Song of Hugh Glass. The film stars Leonardo DiCaprio and Tom Hardy.',
     ratingLevel: 'Good',
     ratingScore: 7.6,
-    videoLink: 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4'
+    videoLink: 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
+    reviews: reviewsMocks,
   },
   {
     id: 8,
@@ -116,6 +124,7 @@ export const films: Film[] = [
     filmDesc: 'Johnny English is a 2003 spy action comedy film directed by Peter Howitt and written by Neal Purvis, Robert Wade and William Davies. It is a British-French venture produced by StudioCanal and Working Title Films, and distributed by Universal Pictures.',
     ratingLevel: 'Good',
     ratingScore: 7.2,
-    videoLink: 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4'
+    videoLink: 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
+    reviews: reviewsMocks,
   }
 ];

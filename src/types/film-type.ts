@@ -1,5 +1,6 @@
 import {Rating} from '../consts/ratings';
 import {Genre} from '../consts/genres';
+import {ReviewType} from './review-type';
 
 export type Film = {
   id: number;
@@ -14,4 +15,5 @@ export type Film = {
   ratingLevel: Rating;
   ratingScore: number;
   videoLink: string;
+  reviews: ReviewType[];
 };
