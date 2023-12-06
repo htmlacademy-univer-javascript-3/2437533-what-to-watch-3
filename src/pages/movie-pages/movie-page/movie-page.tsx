@@ -2,11 +2,11 @@ import {JSX} from 'react';
 import {Footer} from '../../../components/footer/footer';
 import {useParams} from 'react-router-dom';
 import {Film} from '../../../types/film-type';
-import {FilmsList} from '../../../components/small-film-card/films-list';
 import {Logo} from '../../../components/logo/logo';
 import {UserBlock} from '../../../components/user-block/user-block';
 import {FilmCardWrap} from '../../../components/film-card/film-card-wrap';
 import {FilmCardNav} from '../../../components/film-card/film-card-nav';
+import {FilmsListSimilar} from '../../../components/small-film-card/films-list-sorted';
 
 
 type MoviePageProps = {
@@ -72,7 +72,7 @@ export function MoviePage({films}: MoviePageProps
       <div className="page-content">
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
-          <FilmsList mainFilmId={movie.id} films={films}/>
+          <FilmsListSimilar mainFilmId={movie.id} films={films} mainFilmGenre={movie.genre}/>
         </section>
 
         <Footer></Footer>

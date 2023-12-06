@@ -1,4 +1,3 @@
-import '../../../style/player-style/player-style.css';
 import {Film} from '../../types/film-type';
 import {useEffect, useRef, useState} from 'react';
 import {useParams} from 'react-router-dom';
@@ -9,7 +8,7 @@ export type VideoPlayerProps = {
   films: Film[];
 }
 
-export function VideoPlayer({films}: VideoPlayerProps) {
+export function Player({films}: VideoPlayerProps) {
   const params = useParams();
   const paramsId = parseInt(params.id || '1', 10);
   const movie = films.find((f) => f.id === paramsId) || films[0];
@@ -32,7 +31,7 @@ export function VideoPlayer({films}: VideoPlayerProps) {
   }, [isPlaying]);
   return (
     <div className="player">
-      <video src={movie.videoLink} className="player__video" poster="img/player-poster.jpg"></video>
+      <video src={movie.videoLink} className="player__video" poster={movie.filmImg}></video>
 
       <button type="button" className="player__exit">Exit</button>
 
