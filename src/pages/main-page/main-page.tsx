@@ -7,10 +7,13 @@ import {Link} from 'react-router-dom';
 import {AppRoutes} from '../../consts/appRoutes';
 import {FilmsListSorted} from '../../components/small-film-card/films-list-sorted';
 import {useAppSelector} from '../../hooks';
+import {ShowMoreButton} from '../../components/show-more-button/show-more-button';
 
 
 export function MainPage(): JSX.Element {
   const mainFilm = useAppSelector((state) => state.main);
+  const currentVisibleCount = useAppSelector((state) => state.currentGenreVisibleCount);
+  const currentGenreCount = useAppSelector((state) => state.currentGenreCount);
 
   return(
     <>
@@ -66,10 +69,7 @@ export function MainPage(): JSX.Element {
           <h2 className="catalog__title visually-hidden">Catalog</h2>
           <GenresList></GenresList>
           <FilmsListSorted mainFilmId={mainFilm.id}/>
-
-          <div className="catalog__more">
-            <button className="catalog__button" type="button">Show more</button>
-          </div>
+          {currentVisibleCount < currentGenreCount && (<ShowMoreButton/>)}
         </section>
 
         <Footer></Footer>

@@ -1,7 +1,8 @@
 import {JSX, useEffect} from 'react';
 import SmallFilmCard from './small-film-card';
 import {Genre} from '../../consts/genres';
-import {useAppSelector} from '../../hooks';
+import {useAppDispatch, useAppSelector} from '../../hooks';
+import {setFilmsGenreCount} from '../../store/action';
 
 
 type FilmsListSortedProps = {
@@ -10,21 +11,23 @@ type FilmsListSortedProps = {
 
 
 export function FilmsListSorted({mainFilmId}: FilmsListSortedProps): JSX.Element {
-  const films = useAppSelector((state) => state.films);
+  let films = useAppSelector((state) => state.films);
   const mainFilmGenre = useAppSelector((state) => state.genre);
+  const visibleFilmsCount = useAppSelector((state) => state.currentGenreVisibleCount);
+
 
   // eslint-disable-next-line @typescript-eslint/no-empty-function
-  useEffect(() => { }, [mainFilmGenre]);
+  useEffect(() => { }, [mainFilmGenre, visibleFilmsCount]);
+  films = films.filter((f) => f.id !== mainFilmId && (f.genre === mainFilmGenre || mainFilmGenre === Genre.All));
+  const dispatch = useAppDispatch();
+  dispatch(setFilmsGenreCount(films.length));
+  films = films.slice(0, visibleFilmsCount);
 
   return (
     <div className="catalog__films-list" >
       {
-        films.map((film) => {
-          if (film.id !== mainFilmId && (film.genre === mainFilmGenre || mainFilmGenre === Genre.All)) {
-            return(
-              <SmallFilmCard filmId={film.id} key={film.name} name={film.name} imgSrc={film.filmImg} videoLink={film.videoLink}/>);
-          }
-        }
+        films.map((film) => (
+          <SmallFilmCard filmId={film.id} key={film.name} name={film.name} imgSrc={film.filmImg} videoLink={film.videoLink}/>)
         )
       }
     </div>

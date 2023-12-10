@@ -1,7 +1,7 @@
 import {Genre} from '../../consts/genres';
 import cn from 'classnames';
 import {useAppDispatch, useAppSelector} from '../../hooks';
-import {changeGenre} from '../../store/action.ts';
+import {changeGenre, resetCurrVisibleCount} from '../../store/action.ts';
 import {Link} from 'react-router-dom';
 
 type GenreItemProps = {
@@ -11,7 +11,9 @@ type GenreItemProps = {
 export function GenreItem({ genreName }: GenreItemProps) {
   const dispatch = useAppDispatch();
   const activeGenre = useAppSelector((state) => state.genre);
+
   const changeGenreHandler = () => {
+    dispatch(resetCurrVisibleCount());
     dispatch(changeGenre(genreName));
   };
   return (
