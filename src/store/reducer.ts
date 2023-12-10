@@ -6,19 +6,33 @@ import {
   addCurrVisibleCount,
   setFilms,
   setMainFilm,
-  resetCurrVisibleCount, setFilmsGenreCount
+  resetCurrVisibleCount, setFilmsGenreCount, requireAuthorization, setFilmDataLoadingStatus
 } from './action';
+import {AuthorizationStatus} from '../consts/authorization';
+import {FilmType} from '../types/film-type';
 
-
-const initialState = {
-  main: filmsMock[0],
-  genre: Genre.All,
-  films: filmsMock,
-  currentGenreVisibleCount: 8,
-  currentGenreCount: filmsMock.length,
+type InitialState = {
+  main: FilmType;
+  genre: Genre;
+  films: FilmType[];
+  currentGenreVisibleCount: number;
+  currentGenreCount: number;
+  authorizationStatus: AuthorizationStatus;
+  isFilmDataLoading: boolean;
 };
 
-const reducer = createReducer(initialState, (builder) => {
+
+const initialState: InitialState = {
+  main: filmsMock[0],
+  genre: Genre.All,
+  films: [],
+  currentGenreVisibleCount: 8,
+  currentGenreCount: 0,
+  authorizationStatus: AuthorizationStatus.Unknown,
+  isFilmDataLoading: false,
+};
+
+export const reducer = createReducer(initialState, (builder) => {
   builder
     .addCase(changeGenre, (state, action) => {
       state.genre = action.payload;
@@ -37,7 +51,11 @@ const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(setFilmsGenreCount, (state, action) => {
       state.currentGenreCount = action.payload;
+    })
+    .addCase(requireAuthorization, (state, action) => {
+      state.authorizationStatus = action.payload;
+    })
+    .addCase(setFilmDataLoadingStatus, (state, action) => {
+      state.isFilmDataLoading = action.payload;
     });
 });
-
-export {reducer};

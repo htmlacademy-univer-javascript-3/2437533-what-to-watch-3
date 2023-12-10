@@ -31,7 +31,7 @@ export function Player({films}: VideoPlayerProps) {
   }, [isPlaying]);
   return (
     <div className="player">
-      <video src={movie.videoLink} className="player__video" poster={movie.filmImg}></video>
+      <video src={movie.previewVideoLink} className="player__video" poster={movie.previewImage}></video>
 
       <button type="button" className="player__exit">Exit</button>
 

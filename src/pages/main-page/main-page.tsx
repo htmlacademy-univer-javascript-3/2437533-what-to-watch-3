@@ -19,7 +19,7 @@ export function MainPage(): JSX.Element {
     <>
       <section className="film-card">
         <div className="film-card__bg">
-          <img src={mainFilm.filmImg} alt={mainFilm.name}/>
+          <img src={mainFilm.previewImage} alt={mainFilm.name}/>
         </div>
 
         <h1 className="visually-hidden">WTW</h1>
@@ -32,8 +32,8 @@ export function MainPage(): JSX.Element {
         <div className="film-card__wrap">
           <div className="film-card__info">
             <div className="film-card__poster">
-              <img src={mainFilm.filmImg} alt={mainFilm.name.concat(' ', 'poster')} width="218"
-                height="327"
+              <img src={mainFilm.previewImage} alt={mainFilm.name.concat(' ', 'poster')} width="218"
+                   height="327"
               />
             </div>
 
@@ -41,7 +41,7 @@ export function MainPage(): JSX.Element {
               <h2 className="film-card__title">{mainFilm.name}</h2>
               <p className="film-card__meta">
                 <span className="film-card__genre">{mainFilm.genre}</span>
-                <span className="film-card__year">{mainFilm.releaseYear}</span>
+                <span className="film-card__year">{mainFilm.released}</span>
               </p>
 
               <div className="film-card__buttons">

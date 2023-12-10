@@ -17,7 +17,7 @@ export function FilmCardTextRow({movie}: FilmCardTextRowProps): JSX.Element {
       </p>
       <p className="film-card__details-item">
         <strong className="film-card__details-name">Released</strong>
-        <span className="film-card__details-value">{movie.releaseYear}</span>
+        <span className="film-card__details-value">{movie.released}</span>
       </p>
     </div>
   );
