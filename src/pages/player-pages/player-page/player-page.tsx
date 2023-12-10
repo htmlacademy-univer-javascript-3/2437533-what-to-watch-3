@@ -1,9 +1,9 @@
 import {JSX} from 'react';
-import {Film} from '../../../types/film-type';
+import {FilmType} from '../../../types/film-type';
 import {Player} from '../../../components/player/player';
 
 type PlayerProps = {
-  films: Film[];
+  films: FilmType[];
 }
 
 export function PlayerPage({films}: PlayerProps): JSX.Element {

@@ -1,24 +1,22 @@
 import {JSX} from 'react';
 import {Footer} from '../../../components/footer/footer';
 import {useParams} from 'react-router-dom';
-import {Film} from '../../../types/film-type';
 import {Logo} from '../../../components/logo/logo';
 import {UserBlock} from '../../../components/user-block/user-block';
 import {FilmCardWrap} from '../../../components/film-card/film-card-wrap';
 import {FilmCardNav} from '../../../components/film-card/film-card-nav';
-import {FilmsListSimilar} from '../../../components/small-film-card/films-list-sorted';
+import {FilmsListSorted} from '../../../components/small-film-card/films-list-sorted';
+import {useAppDispatch, useAppSelector} from '../../../hooks';
+import {changeGenre} from '../../../store/action';
 
 
-type MoviePageProps = {
-  films: Film[];
-}
-
-
-export function MoviePage({films}: MoviePageProps
-): JSX.Element {
+export function MoviePage(): JSX.Element {
+  const films = useAppSelector((state) => state.films);
   const params = useParams();
   const paramsId = parseInt(params.id || '1', 10);
   const movie = films.find((f) => f.id === paramsId) || films[0];
+  const dispatch = useAppDispatch();
+  dispatch(changeGenre(movie.genre));
   return(
     <>
       <section className="film-card film-card--full">
@@ -72,7 +70,7 @@ export function MoviePage({films}: MoviePageProps
       <div className="page-content">
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
-          <FilmsListSimilar mainFilmId={movie.id} films={films} mainFilmGenre={movie.genre}/>
+          <FilmsListSorted mainFilmId={movie.id}/>
         </section>
 
         <Footer></Footer>

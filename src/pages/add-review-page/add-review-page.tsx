@@ -2,11 +2,11 @@ import {JSX} from 'react';
 import {Link, useParams} from 'react-router-dom';
 import {CommentSendForm} from '../../components/comment-send-form/comment-send-form';
 import { useState } from 'react';
-import {Film} from '../../types/film-type';
+import {FilmType} from '../../types/film-type';
 
 
 type AddReviewPageProps = {
-  films: Film[];
+  films: FilmType[];
 }
 
 export function AddReviewPage({films: films}: AddReviewPageProps): JSX.Element {
@@ -51,7 +51,7 @@ export function AddReviewPage({films: films}: AddReviewPageProps): JSX.Element {
           <ul className="user-block">
             <li className="user-block__item">
               <div className="user-block__avatar">
-                <img src="img/avatar.jpg" alt="User avatar" width="63" height="63"/>
+                <img src="../../markup/img/avatar.jpg" alt="User avatar" width="63" height="63"/>
               </div>
             </li>
             <li className="user-block__item">

@@ -1,14 +1,14 @@
-import {Film} from '../types/film-type';
+import {FilmType} from '../types/film-type';
 import {Genre} from '../consts/genres';
-import {reviewsMocks} from "./reviews";
+import {reviewsMocks} from './reviews';
 
-export const films: Film[] = [
+export const filmsMock: FilmType[] = [
   {
     id: 1,
     name: 'The Grand Budapest Hotel',
     filmImg: 'img/bg-the-grand-budapest-hotel.jpg',
     runTime: '2h 14m',
-    genre: Genre.Fantasy,
+    genre: Genre.SciFi,
     director: 'Wes Anderson',
     starring: 'Bill Murray, Edward Norton, Jude Law, Willem Dafoe',
     releaseYear: 2018,
@@ -25,7 +25,7 @@ export const films: Film[] = [
     name: 'Bohemian Rhapsody',
     filmImg: 'img/bohemian-rhapsody.jpg',
     runTime: '2h 14m',
-    genre: Genre.Drama,
+    genre: Genre.Dramas,
     director: 'Bryan Singer',
     starring: 'Rami Malek,Lucy Boynton, Gwilym Lee, Ben Hardy and other',
     releaseYear: 2018,
@@ -42,7 +42,7 @@ export const films: Film[] = [
     name: 'Macbeth',
     filmImg: 'img/macbeth.jpg',
     runTime: '1h 53m',
-    genre: Genre.Drama,
+    genre: Genre.Dramas,
     director: 'Wes Anderson',
     starring: 'Bill Murray, Edward Norton, Jude Law, Willem Dafoe',
     releaseYear: 2015,
@@ -72,7 +72,7 @@ export const films: Film[] = [
     name: 'We need to talk about Kevin',
     filmImg: 'img/we-need-to-talk-about-kevin.jpg',
     runTime: '2h 50m',
-    genre: Genre.Thriller,
+    genre: Genre.Horror,
     director: 'Wes Anderson',
     starring: 'Bill Murray, Edward Norton, Jude Law, Willem Dafoe',
     releaseYear: 2004,
@@ -102,7 +102,7 @@ export const films: Film[] = [
     name: 'Revenant',
     filmImg: 'img/revenant.jpg',
     runTime: '2h 50m',
-    genre: Genre.Action,
+    genre: Genre.Horror,
     director: 'Wes Anderson',
     starring: 'Bill Murray, Edward Norton, Jude Law, Willem Dafoe',
     releaseYear: 2004,
@@ -117,7 +117,7 @@ export const films: Film[] = [
     name: 'Johnny English',
     filmImg: 'img/johnny-english.jpg',
     runTime: '2h 50m',
-    genre: Genre.Comedie,
+    genre: Genre.Comedies,
     director: 'Wes Anderson',
     starring: 'Bill Murray, Edward Norton, Jude Law, Willem Dafoe',
     releaseYear: 2004,

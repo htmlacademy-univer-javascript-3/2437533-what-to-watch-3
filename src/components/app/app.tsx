@@ -7,23 +7,18 @@ import {MoviePage} from '../../pages/movie-pages/movie-page/movie-page';
 import {MovieReviewsPage} from '../../pages/movie-pages/movie-reviews-page/movie-reviews-page';
 import {PlayerPage} from '../../pages/player-pages/player-page/player-page';
 import {PrivateRoute} from '../private-route/private-route';
-import {films} from '../../mocks/films';
-import {Film} from '../../types/film-type';
+import {filmsMock} from '../../mocks/films';
 import {AppRoutes} from '../../consts/appRoutes';
 import {MovieDetailsPage} from '../../pages/movie-pages/movie-details-page/movie-details-page';
 import {AddReviewPage} from '../../pages/add-review-page/add-review-page';
 
-export type AppProps = {
-  mainFilm: Film;
-  films: Film[];
-}
 
-export function App(props: AppProps) {
+export function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path={AppRoutes.Main}>
-          <Route index element={<MainPage {...props}/>} />
+          <Route index element={<MainPage />} />
           <Route path={AppRoutes.Login} element={<SingInPage />} />
           <Route path={AppRoutes.MyList} element={
             <PrivateRoute >
@@ -31,11 +26,11 @@ export function App(props: AppProps) {
             </PrivateRoute >
           }
           />
-          <Route path={AppRoutes.Films} element={<MoviePage films={films}/>} />
-          <Route path={AppRoutes.Reviews} element={<MovieReviewsPage films={films}/>} />
-          <Route path={AppRoutes.Details} element={<MovieDetailsPage films={films}/>} />
-          <Route path={AppRoutes.Player} element={<PlayerPage films={films}/>} />
-          <Route path={AppRoutes.AddReview} element={<AddReviewPage films={films}/>} />
+          <Route path={AppRoutes.Films} element={<MoviePage />} />
+          <Route path={AppRoutes.Reviews} element={<MovieReviewsPage films={filmsMock}/>} />
+          <Route path={AppRoutes.Details} element={<MovieDetailsPage films={filmsMock}/>} />
+          <Route path={AppRoutes.Player} element={<PlayerPage films={filmsMock}/>} />
+          <Route path={AppRoutes.AddReview} element={<AddReviewPage films={filmsMock}/>} />
         </Route>
         <Route path="*" element={<NotFoundPage />}/>
       </Routes>

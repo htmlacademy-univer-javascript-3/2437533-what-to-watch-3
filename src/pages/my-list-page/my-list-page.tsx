@@ -1,5 +1,4 @@
 import {JSX} from 'react';
-import {films} from '../../mocks/films';
 import {FilmsList} from '../../components/small-film-card/films-list';
 import {Footer} from '../../components/footer/footer';
 import {Link} from 'react-router-dom';
@@ -20,7 +19,7 @@ export function MyListPage(): JSX.Element {
         <ul className="user-block">
           <li className="user-block__item">
             <div className="user-block__avatar">
-              <img src="img/avatar.jpg" alt="User avatar" width="63" height="63"/>
+              <img src="../../markup/img/avatar.jpg" alt="User avatar" width="63" height="63"/>
             </div>
           </li>
           <li className="user-block__item">
@@ -31,7 +30,7 @@ export function MyListPage(): JSX.Element {
 
       <section className="catalog">
         <h2 className="catalog__title visually-hidden">Catalog</h2>
-        <FilmsList mainFilmId={-1} films={films}/>
+        <FilmsList mainFilmId={-1}/>
       </section>
 
       <Footer></Footer>

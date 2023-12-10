@@ -1,7 +1,7 @@
-import {Film} from '../../types/film-type';
+import {FilmType} from '../../types/film-type';
 
 type FilmCardTextRowProps = {
-  movie: Film;
+  movie: FilmType;
 }
 
 export function FilmCardTextRow({movie}: FilmCardTextRowProps): JSX.Element {

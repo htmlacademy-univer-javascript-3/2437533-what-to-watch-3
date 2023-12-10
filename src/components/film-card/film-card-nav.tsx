@@ -1,9 +1,9 @@
-import {Film} from '../../types/film-type';
+import {FilmType} from '../../types/film-type';
 import {AppRoutes} from '../../consts/appRoutes';
 import {Tab} from '../tab/tab';
 
 type FilmCardNavProps = {
-  film: Film;
+  film: FilmType;
 }
 
 export function FilmCardNav({film}: FilmCardNavProps): JSX.Element {

@@ -1,11 +1,11 @@
-import {Film} from '../../types/film-type';
+import {FilmType} from '../../types/film-type';
 import {useEffect, useRef, useState} from 'react';
 import {useParams} from 'react-router-dom';
 import {PlayerButton} from './player-button';
 import cn from 'classnames';
 
 export type VideoPlayerProps = {
-  films: Film[];
+  films: FilmType[];
 }
 
 export function Player({films}: VideoPlayerProps) {

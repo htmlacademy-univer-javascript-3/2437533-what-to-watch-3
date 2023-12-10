@@ -1,9 +1,9 @@
-import {Film} from '../../types/film-type';
+import {FilmType} from '../../types/film-type';
 import {AppRoutes} from '../../consts/appRoutes';
 import {Link} from 'react-router-dom';
 
 type FilmCardButtonsProps = {
-  film: Film;
+  film: FilmType;
 }
 
 export function FilmCardButtons({film}: FilmCardButtonsProps): JSX.Element {
