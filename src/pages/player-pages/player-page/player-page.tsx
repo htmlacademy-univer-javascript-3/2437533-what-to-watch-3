@@ -1,12 +1,11 @@
 import {JSX} from 'react';
-import {FilmType} from '../../../types/film-type';
 import {Player} from '../../../components/player/player';
+import {useAppSelector} from '../../../hooks';
 
-type PlayerProps = {
-  films: FilmType[];
-}
 
-export function PlayerPage({films}: PlayerProps): JSX.Element {
+export function PlayerPage(): JSX.Element {
+  const films = useAppSelector((state) => state.films);
+
   return(
     <Player films={films}></Player>
   );

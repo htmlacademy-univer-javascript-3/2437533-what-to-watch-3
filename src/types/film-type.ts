@@ -1,19 +1,24 @@
 import {Rating} from '../consts/ratings';
-import {Genre} from '../consts/genres';
 import {ReviewType} from './review-type';
 
 export type FilmType = {
-  id: number;
+  id: string;
   name: string;
-  filmImg: string;
-  runTime: string;
-  genre: Genre;
-  director: string;
-  starring: string;
-  releaseYear: number;
-  filmDesc: string;
-  ratingLevel: Rating;
-  ratingScore: number;
+  posterImage: string;
+  previewImage: string;
+  backgroundImage: string;
+  backgroundColor: string;
   videoLink: string;
-  reviews: ReviewType[];
+  description: string;
+  rating: number;
+  scoresCount: number;
+  director: string;
+  starring: string[];
+  runTime: number;
+  genre: string;
+  released: number;
+  ratingLevel: Rating;
+  isFavorite: boolean;
+  previewVideoLink: string;
+  reviews: ReviewType[]; // delete
 };

@@ -19,7 +19,7 @@ export function FilmsList({mainFilmId}: FilmsListProps): JSX.Element {
         films.map((film) => {
           if (film.id !== mainFilmId) {
             return(
-              <SmallFilmCard filmId={film.id} key={film.name} name={film.name} imgSrc={film.filmImg} videoLink={film.videoLink}/>);
+              <SmallFilmCard filmId={film.id} key={film.name} name={film.name} imgSrc={film.previewImage} videoLink={film.previewVideoLink}/>);
           }
         }
         )

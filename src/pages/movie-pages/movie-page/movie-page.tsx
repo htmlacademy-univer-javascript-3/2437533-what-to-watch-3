@@ -22,7 +22,7 @@ export function MoviePage(): JSX.Element {
       <section className="film-card film-card--full">
         <div className="film-card__hero">
           <div className="film-card__bg">
-            <img src={movie.filmImg} alt={movie.name}/>
+            <img src={movie.previewImage} alt={movie.name}/>
           </div>
 
           <h1 className="visually-hidden">WTW</h1>
@@ -38,15 +38,15 @@ export function MoviePage(): JSX.Element {
         <div className="film-card__wrap film-card__translate-top">
           <div className="film-card__info">
             <div className="film-card__poster film-card__poster--big">
-              <img src={movie.filmImg} alt={movie.name} width="218"
-                height="327"
+              <img src={movie.previewImage} alt={movie.name} width="218"
+                   height="327"
               />
             </div>
 
             <div className="film-card__desc">
               <FilmCardNav film={movie}></FilmCardNav>
               <div className="film-rating">
-                <div className="film-rating__score">{movie.ratingScore}</div>
+                <div className="film-rating__score">{movie.rating}</div>
                 <p className="film-rating__meta">
                   <span className="film-rating__level">{movie.ratingLevel}</span>
                   <span className="film-rating__count">240 ratings</span>
@@ -54,7 +54,7 @@ export function MoviePage(): JSX.Element {
               </div>
 
               <div className="film-card__text">
-                <p>{movie.filmDesc}</p>
+                <p>{movie.description}</p>
 
                 <p className="film-card__director"><strong>Director: {movie.director}</strong></p>
 

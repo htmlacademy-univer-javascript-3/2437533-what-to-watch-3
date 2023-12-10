@@ -2,18 +2,15 @@ import {JSX} from 'react';
 import {Link, useParams} from 'react-router-dom';
 import {CommentSendForm} from '../../components/comment-send-form/comment-send-form';
 import { useState } from 'react';
-import {FilmType} from '../../types/film-type';
+import {useAppSelector} from '../../hooks';
 
 
-type AddReviewPageProps = {
-  films: FilmType[];
-}
-
-export function AddReviewPage({films: films}: AddReviewPageProps): JSX.Element {
+export function AddReviewPage(): JSX.Element {
   const [filmRating, setFilmRating] = useState(0);
   if (filmRating !== undefined) {
     //на будущее с отправкой формы
   }
+  const films = useAppSelector((state) => state.films);
 
   const params = useParams();
   const paramsId = parseInt(params.id || '1', 10);
@@ -23,7 +20,7 @@ export function AddReviewPage({films: films}: AddReviewPageProps): JSX.Element {
     <section className="film-card film-card--full">
       <div className="film-card__header">
         <div className="film-card__bg">
-          <img src={movie.filmImg} alt={movie.name}/>
+          <img src={movie.previewImage} alt={movie.name}/>
         </div>
 
         <h1 className="visually-hidden">WTW</h1>
@@ -61,8 +58,8 @@ export function AddReviewPage({films: films}: AddReviewPageProps): JSX.Element {
         </header>
 
         <div className="film-card__poster film-card__poster--small">
-          <img src={movie.filmImg} alt={movie.name} width="218"
-            height="327"
+          <img src={movie.previewImage} alt={movie.name} width="218"
+               height="327"
           />
         </div>
       </div>

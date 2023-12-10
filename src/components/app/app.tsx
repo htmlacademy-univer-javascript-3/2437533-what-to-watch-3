@@ -7,13 +7,23 @@ import {MoviePage} from '../../pages/movie-pages/movie-page/movie-page';
 import {MovieReviewsPage} from '../../pages/movie-pages/movie-reviews-page/movie-reviews-page';
 import {PlayerPage} from '../../pages/player-pages/player-page/player-page';
 import {PrivateRoute} from '../private-route/private-route';
-import {filmsMock} from '../../mocks/films';
 import {AppRoutes} from '../../consts/appRoutes';
 import {MovieDetailsPage} from '../../pages/movie-pages/movie-details-page/movie-details-page';
 import {AddReviewPage} from '../../pages/add-review-page/add-review-page';
+import {useAppSelector} from '../../hooks';
+import {LoadingScreen} from '../../pages/loading-screen/loading-screen';
 
 
 export function App() {
+  const isLoading = useAppSelector((state) => state.isFilmDataLoading);
+
+  if (isLoading) {
+    return (
+      <LoadingScreen></LoadingScreen>
+    );
+  }
+
+
   return (
     <BrowserRouter>
       <Routes>
@@ -27,10 +37,10 @@ export function App() {
           }
           />
           <Route path={AppRoutes.Films} element={<MoviePage />} />
-          <Route path={AppRoutes.Reviews} element={<MovieReviewsPage films={filmsMock}/>} />
-          <Route path={AppRoutes.Details} element={<MovieDetailsPage films={filmsMock}/>} />
-          <Route path={AppRoutes.Player} element={<PlayerPage films={filmsMock}/>} />
-          <Route path={AppRoutes.AddReview} element={<AddReviewPage films={filmsMock}/>} />
+          <Route path={AppRoutes.Reviews} element={<MovieReviewsPage />} />
+          <Route path={AppRoutes.Details} element={<MovieDetailsPage />} />
+          <Route path={AppRoutes.Player} element={<PlayerPage />} />
+          <Route path={AppRoutes.AddReview} element={<AddReviewPage />} />
         </Route>
         <Route path="*" element={<NotFoundPage />}/>
       </Routes>

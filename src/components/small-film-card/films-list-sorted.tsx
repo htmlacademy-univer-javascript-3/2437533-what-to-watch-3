@@ -27,7 +27,7 @@ export function FilmsListSorted({mainFilmId}: FilmsListSortedProps): JSX.Element
     <div className="catalog__films-list" >
       {
         films.map((film) => (
-          <SmallFilmCard filmId={film.id} key={film.name} name={film.name} imgSrc={film.filmImg} videoLink={film.videoLink}/>)
+          <SmallFilmCard filmId={film.id} key={film.name} name={film.name} imgSrc={film.previewImage} videoLink={film.previewVideoLink}/>)
         )
       }
     </div>
