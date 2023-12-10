@@ -1,7 +1,7 @@
-import {Film} from '../../types/film-type';
+import {FilmType} from '../../types/film-type';
 
 type FilmCardTextColProps = {
-  film: Film;
+  film: FilmType;
 }
 
 export function FilmCardTextCol({film}: FilmCardTextColProps): JSX.Element {

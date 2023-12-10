@@ -2,7 +2,7 @@ import {Rating} from '../consts/ratings';
 import {Genre} from '../consts/genres';
 import {ReviewType} from './review-type';
 
-export type Film = {
+export type FilmType = {
   id: number;
   name: string;
   filmImg: string;

@@ -1,15 +1,12 @@
 export enum Genre {
   All = 'All genres',
-  Drama = 'Drama',
-  Action = 'Action',
-  Comedie = 'Comedy',
+  Comedies = 'Comedies',
   Crime = 'Crime',
-  Fantasy = 'Fantasy',
   Documentary = 'Documentary',
+  Dramas = 'Dramas',
   Horror = 'Horror',
   KidsFamily = 'Kids & Family',
   Romance = 'Romance',
-  Adventure = 'Adventure',
-  Thriller = 'Thriller',
   SciFi = 'Sci-Fi',
+  Thrillers = 'Thrillers'
 }

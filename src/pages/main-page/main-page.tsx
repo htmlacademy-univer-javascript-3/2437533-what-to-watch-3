@@ -1,20 +1,17 @@
 import {JSX} from 'react';
-import {FilmsList} from '../../components/small-film-card/films-list';
 import {Footer} from '../../components/footer/footer';
-import {Film} from '../../types/film-type';
 import {GenresList} from '../../components/genres-list/genres-list';
 import {Logo} from '../../components/logo/logo';
 import {UserBlock} from '../../components/user-block/user-block';
 import {Link} from 'react-router-dom';
 import {AppRoutes} from '../../consts/appRoutes';
+import {FilmsListSorted} from '../../components/small-film-card/films-list-sorted';
+import {useAppSelector} from '../../hooks';
 
 
-type MainPageProps = {
-  mainFilm: Film;
-  films: Film[];
-}
+export function MainPage(): JSX.Element {
+  const mainFilm = useAppSelector((state) => state.main);
 
-export function MainPage({mainFilm, films}: MainPageProps): JSX.Element {
   return(
     <>
       <section className="film-card">
@@ -68,7 +65,7 @@ export function MainPage({mainFilm, films}: MainPageProps): JSX.Element {
         <section className="catalog">
           <h2 className="catalog__title visually-hidden">Catalog</h2>
           <GenresList></GenresList>
-          <FilmsList mainFilmId={mainFilm.id} films={films}/>
+          <FilmsListSorted mainFilmId={mainFilm.id}/>
 
           <div className="catalog__more">
             <button className="catalog__button" type="button">Show more</button>

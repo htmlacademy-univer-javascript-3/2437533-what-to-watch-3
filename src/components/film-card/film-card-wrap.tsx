@@ -1,8 +1,8 @@
-import {Film} from '../../types/film-type';
+import {FilmType} from '../../types/film-type';
 import {FilmCardButtons} from './film-card-buttons';
 
 type FilmCardWrapProps = {
-  film: Film;
+  film: FilmType;
 }
 
 export function FilmCardWrap({film}: FilmCardWrapProps): JSX.Element {
