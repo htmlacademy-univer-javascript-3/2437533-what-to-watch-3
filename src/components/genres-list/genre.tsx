@@ -1,11 +1,10 @@
-import {Genre} from '../../consts/genres';
 import cn from 'classnames';
 import {useAppDispatch, useAppSelector} from '../../hooks';
 import {changeGenre, resetCurrVisibleCount} from '../../store/action.ts';
 import {Link} from 'react-router-dom';
 
 type GenreItemProps = {
-  genreName: Genre;
+  genreName: string;
 }
 
 export function GenreItem({ genreName }: GenreItemProps) {

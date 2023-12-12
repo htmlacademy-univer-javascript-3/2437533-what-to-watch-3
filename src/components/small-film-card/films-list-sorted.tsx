@@ -5,15 +5,11 @@ import {useAppDispatch, useAppSelector} from '../../hooks';
 import {setFilmsGenreCount} from '../../store/action';
 
 
-type FilmsListSortedProps = {
-  mainFilmId: number;
-}
-
-
-export function FilmsListSorted({mainFilmId}: FilmsListSortedProps): JSX.Element {
+export function FilmsListSorted(): JSX.Element {
   let films = useAppSelector((state) => state.films);
   const mainFilmGenre = useAppSelector((state) => state.genre);
   const visibleFilmsCount = useAppSelector((state) => state.currentGenreVisibleCount);
+  const mainFilmId = useAppSelector((state) => state.main.id);
 
 
   // eslint-disable-next-line @typescript-eslint/no-empty-function

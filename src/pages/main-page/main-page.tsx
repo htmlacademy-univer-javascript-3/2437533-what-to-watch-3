@@ -33,7 +33,7 @@ export function MainPage(): JSX.Element {
           <div className="film-card__info">
             <div className="film-card__poster">
               <img src={mainFilm.previewImage} alt={mainFilm.name.concat(' ', 'poster')} width="218"
-                   height="327"
+                height="327"
               />
             </div>
 
@@ -68,7 +68,7 @@ export function MainPage(): JSX.Element {
         <section className="catalog">
           <h2 className="catalog__title visually-hidden">Catalog</h2>
           <GenresList></GenresList>
-          <FilmsListSorted mainFilmId={mainFilm.id}/>
+          <FilmsListSorted />
           {currentVisibleCount < currentGenreCount && (<ShowMoreButton/>)}
         </section>
 
