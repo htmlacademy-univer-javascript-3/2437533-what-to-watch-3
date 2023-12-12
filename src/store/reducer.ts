@@ -6,19 +6,22 @@ import {
   addCurrVisibleCount,
   setFilms,
   setMainFilm,
-  resetCurrVisibleCount, setFilmsGenreCount, requireAuthorization, setFilmDataLoadingStatus
+  resetCurrVisibleCount, setFilmsGenreCount, requireAuthorization, setFilmDataLoadingStatus, setUserData
 } from './action';
 import {AuthorizationStatus} from '../consts/authorization';
 import {FilmType} from '../types/film-type';
+import {UserData} from '../types/user-data';
 
 type InitialState = {
   main: FilmType;
-  genre: Genre;
+  genre: string;
   films: FilmType[];
   currentGenreVisibleCount: number;
   currentGenreCount: number;
   authorizationStatus: AuthorizationStatus;
   isFilmDataLoading: boolean;
+  error: string | null;
+  user: UserData | null;
 };
 
 
@@ -30,6 +33,8 @@ const initialState: InitialState = {
   currentGenreCount: 0,
   authorizationStatus: AuthorizationStatus.Unknown,
   isFilmDataLoading: false,
+  error: null,
+  user: null,
 };
 
 export const reducer = createReducer(initialState, (builder) => {
@@ -57,5 +62,8 @@ export const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(setFilmDataLoadingStatus, (state, action) => {
       state.isFilmDataLoading = action.payload;
+    })
+    .addCase(setUserData, (state, action) => {
+      state.user = action.payload;
     });
 });

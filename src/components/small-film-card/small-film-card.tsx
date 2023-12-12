@@ -6,7 +6,7 @@ import {TIMEOUT_BEFORE_PLAYING} from '../../consts/other-consts';
 
 
 type SmallFilmCardProps = {
-  filmId: number;
+  filmId: string;
   imgSrc: string;
   name: string;
   videoLink: string;
@@ -31,11 +31,11 @@ function SmallFilmCard({imgSrc, name, filmId, videoLink}: SmallFilmCardProps): J
     playerElement.pause();
   }, [isPlaying]);
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [_, setActiveCardId] = useState(-1);
+  const [_, setActiveCardId] = useState('-1');
 
   return (
     <article className="small-film-card catalog__films-card" onMouseEnter={() => setActiveCardId(filmId)}
-      onMouseLeave={() => setActiveCardId(-1)}
+      onMouseLeave={() => setActiveCardId('-1')}
     >
       <div className="small-film-card__image" onMouseEnter={() => setIsPlaying(!isPlaying)}
         onMouseLeave={() => setIsPlaying(!isPlaying)}

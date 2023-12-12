@@ -1,5 +1,5 @@
 import {MainPage} from '../../pages/main-page/main-page';
-import {BrowserRouter, Route, Routes} from 'react-router-dom';
+import {Route, Routes} from 'react-router-dom';
 import {SingInPage} from '../../pages/sing-in-pages/sing-in-page/sing-in-page';
 import {NotFoundPage} from '../../pages/not-found-page/not-found-page';
 import {MyListPage} from '../../pages/my-list-page/my-list-page';
@@ -12,6 +12,8 @@ import {MovieDetailsPage} from '../../pages/movie-pages/movie-details-page/movie
 import {AddReviewPage} from '../../pages/add-review-page/add-review-page';
 import {useAppSelector} from '../../hooks';
 import {LoadingScreen} from '../../pages/loading-screen/loading-screen';
+import {HistoryRouter} from '../history-route/history-route';
+import {browserHistory} from '../../browser-history';
 
 
 export function App() {
@@ -25,7 +27,7 @@ export function App() {
 
 
   return (
-    <BrowserRouter>
+    <HistoryRouter history={browserHistory}>
       <Routes>
         <Route path={AppRoutes.Main}>
           <Route index element={<MainPage />} />
@@ -44,5 +46,5 @@ export function App() {
         </Route>
         <Route path="*" element={<NotFoundPage />}/>
       </Routes>
-    </BrowserRouter>);
+    </HistoryRouter>);
 }

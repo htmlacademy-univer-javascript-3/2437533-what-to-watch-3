@@ -4,13 +4,13 @@ import {reviewsMocks} from './reviews';
 
 export const filmsMock: FilmType[] = [
   {
-    id: 1,
+    id: '1',
     name: 'The Grand Budapest Hotel',
     previewImage: 'img/bg-the-grand-budapest-hotel.jpg',
-    runTime: '2h 14m',
-    genre: Genre.SciFi,
+    runTime: 134,
+    genre: 'Action',
     director: 'Wes Anderson',
-    starring: 'Bill Murray, Edward Norton, Jude Law, Willem Dafoe',
+    starring: ['Bill Murray'],
     released: 2018,
     description: 'In the 1930s, the Grand Budapest Hotel is a popular European ski resort, presided over by concierge Gustave H. (Ralph Fiennes). Zero, a junior lobby boy, becomes Gustave\'s friend and protege.\n' +
       '\n' +

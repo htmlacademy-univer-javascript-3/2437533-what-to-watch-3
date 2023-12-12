@@ -1,14 +1,21 @@
+import {useAppSelector} from '../../hooks';
+import {UserBlockAvatar} from './user-block-avatar';
+import {AuthorizationStatus} from '../../consts/authorization';
+import {UserBlockSignOut} from './user-block-sign-out';
+import {UserBlockSignIn} from './user-block-sign-in';
+import {useEffect} from 'react';
+
 export function UserBlock(): JSX.Element {
+  const authStatus = useAppSelector((state) => state.authorizationStatus);
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  useEffect(() => { }, [authStatus]);
+
+
   return(
     <ul className="user-block">
-      <li className="user-block__item">
-        <div className="user-block__avatar">
-          <img src="img/avatar.jpg" alt="User avatar" width="63" height="63"/>
-        </div>
-      </li>
-      <li className="user-block__item">
-        <a className="user-block__link">Sign out</a>
-      </li>
+      {authStatus === AuthorizationStatus.Auth && (<UserBlockAvatar></UserBlockAvatar>)}
+      {authStatus === AuthorizationStatus.Auth && (<UserBlockSignOut></UserBlockSignOut>)}
+      {authStatus === AuthorizationStatus.NoAuth && (<UserBlockSignIn></UserBlockSignIn>)}
     </ul>
   );
 }

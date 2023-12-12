@@ -14,8 +14,7 @@ import {useAppSelector} from '../../../hooks';
 export function MovieDetailsPage(): JSX.Element {
   const films = useAppSelector((state) => state.films);
   const params = useParams();
-  const paramsId = parseInt(params.id || '1', 10);
-  const movie = films.find((f) => f.id === paramsId) || films[0];
+  const movie = films.find((f) => f.id === params.id) || films[0];
 
   return(
     <>
@@ -39,7 +38,7 @@ export function MovieDetailsPage(): JSX.Element {
           <div className="film-card__info">
             <div className="film-card__poster film-card__poster--big">
               <img src={movie.previewImage} alt="The Grand Budapest Hotel poster" width="218"
-                   height="327"
+                height="327"
               />
             </div>
 
@@ -58,7 +57,7 @@ export function MovieDetailsPage(): JSX.Element {
       <div className="page-content">
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
-          <FilmsListSorted mainFilmId={movie.id} />
+          <FilmsListSorted/>
         </section>
         <Footer></Footer>
       </div>
