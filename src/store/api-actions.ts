@@ -4,7 +4,7 @@ import {AppDispatchType, StateType} from '../types/state-type';
 import {FilmType} from '../types/film-type';
 import {
   redirectToRoute,
-  requireAuthorization, setCurrentFilm, setError,
+  requireAuthorization, setComments, setCurrentFilm, setError,
   setFilmDataLoadingStatus,
   setFilms,
   setMainFilm, setSimilarFilms, setUserData
@@ -17,6 +17,7 @@ import {UserData} from '../types/user-data';
 import {TIMEOUT_SHOW_ERROR} from '../consts/other-consts';
 import {store} from './index';
 import {AppRoutes} from '../consts/appRoutes';
+import {CommentType} from "../types/comment-type";
 
 
 export const fetchFilmsAction = createAsyncThunk<void, undefined, {
@@ -66,6 +67,19 @@ export const fetchSimilarFilmsAction = createAsyncThunk<void, string, {
   async (filmId, {dispatch, extra: api}) => {
     const {data} = await api.get<FilmType[]>(`${APIRoute.Films}/${filmId}/similar`);
     dispatch(setSimilarFilms(data));
+  },
+);
+
+
+export const fetchCommentsAction = createAsyncThunk<void, string, {
+  dispatch: AppDispatchType;
+  state: StateType;
+  extra: AxiosInstance;
+}>(
+  'data/fetchSimilarFilms',
+  async (filmId, {dispatch, extra: api}) => {
+    const {data} = await api.get<CommentType[]>(`${APIRoute.Comments}/${filmId}`);
+    dispatch(setComments(data));
   },
 );
 
