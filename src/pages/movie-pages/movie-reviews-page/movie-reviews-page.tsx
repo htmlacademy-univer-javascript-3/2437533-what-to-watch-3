@@ -1,6 +1,5 @@
 import {JSX} from 'react';
 import {Footer} from '../../../components/footer/footer';
-import {useParams} from 'react-router-dom';
 import {Logo} from '../../../components/logo/logo';
 import {UserBlock} from '../../../components/user-block/user-block';
 import {FilmCardWrap} from '../../../components/film-card/film-card-wrap';
@@ -11,11 +10,12 @@ import {useAppSelector} from '../../../hooks';
 
 
 export function MovieReviewsPage(): JSX.Element {
-  const films = useAppSelector((state) => state.films);
-
-  const params = useParams();
-  const paramsId = parseInt(params.id || '1', 10);
-  const movie = films.find((f) => f.id === paramsId) || films[0];
+  // const params = useParams();
+  // const dispatch = useAppDispatch();
+  const movie = useAppSelector((state) => state.currentFilm);
+  if (movie === null) {
+    return <div/>;
+  }
 
   return(
     <>
@@ -39,7 +39,7 @@ export function MovieReviewsPage(): JSX.Element {
           <div className="film-card__info">
             <div className="film-card__poster film-card__poster--big">
               <img src={movie.previewImage} alt={movie.name} width="218"
-                   height="327"
+                height="327"
               />
             </div>
 
@@ -60,7 +60,7 @@ export function MovieReviewsPage(): JSX.Element {
       <div className="page-content">
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
-          <FilmsListSorted mainFilmId={movie.id}/>
+          <FilmsListSorted />
         </section>
 
         <Footer></Footer>

@@ -4,11 +4,10 @@ import {AppDispatchType, StateType} from '../types/state-type';
 import {FilmType} from '../types/film-type';
 import {
   redirectToRoute,
-  requireAuthorization,
-  setError,
+  requireAuthorization, setCurrentFilm, setError,
   setFilmDataLoadingStatus,
   setFilms,
-  setMainFilm, setUserData
+  setMainFilm, setSimilarFilms, setUserData
 } from './action';
 import {APIRoute} from '../consts/api-actions';
 import {AuthData} from '../types/auth-data';
@@ -20,7 +19,7 @@ import {store} from './index';
 import {AppRoutes} from '../consts/appRoutes';
 
 
-export const fetchFilmAction = createAsyncThunk<void, undefined, {
+export const fetchFilmsAction = createAsyncThunk<void, undefined, {
   dispatch: AppDispatchType;
   state: StateType;
   extra: AxiosInstance;
@@ -41,12 +40,35 @@ export const fetchMainFilmAction = createAsyncThunk<void, undefined, {
 }>(
   'data/fetchMainFilm',
   async (_arg, {dispatch, extra: api}) => {
-    dispatch(setFilmDataLoadingStatus(true));
     const {data} = await api.get<FilmType>(APIRoute.Promo);
-    dispatch(setFilmDataLoadingStatus(false));
     dispatch(setMainFilm(data));
   },
 );
+
+export const fetchCurrentFilmAction = createAsyncThunk<void, string, {
+  dispatch: AppDispatchType;
+  state: StateType;
+  extra: AxiosInstance;
+}>(
+  'data/fetchCurrentFilm',
+  async (filmId, {dispatch, extra: api}) => {
+    const {data} = await api.get<FilmType>(`${APIRoute.Films}/${filmId}`);
+    dispatch(setCurrentFilm(data));
+  },
+);
+
+export const fetchSimilarFilmsAction = createAsyncThunk<void, string, {
+  dispatch: AppDispatchType;
+  state: StateType;
+  extra: AxiosInstance;
+}>(
+  'data/fetchSimilarFilms',
+  async (filmId, {dispatch, extra: api}) => {
+    const {data} = await api.get<FilmType[]>(`${APIRoute.Films}/${filmId}/similar`);
+    dispatch(setSimilarFilms(data));
+  },
+);
+
 
 export const checkAuthAction = createAsyncThunk<void, undefined, {
   dispatch: AppDispatchType;

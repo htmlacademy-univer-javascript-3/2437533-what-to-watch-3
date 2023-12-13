@@ -1,14 +1,13 @@
 import {JSX, useEffect} from 'react';
 import SmallFilmCard from './small-film-card';
-import {useAppSelector} from '../../hooks';
+import {FilmType} from '../../types/film-type';
 
 type FilmsListProps = {
-  mainFilmId: number;
+  films: FilmType[];
 }
 
 
-export function FilmsList({mainFilmId}: FilmsListProps): JSX.Element {
-  const films = useAppSelector((state) => state.films);
+export function FilmsList({films}: FilmsListProps): JSX.Element {
 
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   useEffect(() => { }, [films]);
@@ -16,12 +15,8 @@ export function FilmsList({mainFilmId}: FilmsListProps): JSX.Element {
   return (
     <div className="catalog__films-list" >
       {
-        films.map((film) => {
-          if (film.id !== mainFilmId) {
-            return(
-              <SmallFilmCard filmId={film.id} key={film.name} name={film.name} imgSrc={film.previewImage} videoLink={film.previewVideoLink}/>);
-          }
-        }
+        films.map((film) => (
+          <SmallFilmCard filmId={film.id} key={film.name} name={film.name} imgSrc={film.previewImage} videoLink={film.previewVideoLink}/>)
         )
       }
     </div>

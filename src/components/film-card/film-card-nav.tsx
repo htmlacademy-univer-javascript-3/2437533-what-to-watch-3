@@ -10,9 +10,9 @@ export function FilmCardNav({film}: FilmCardNavProps): JSX.Element {
   return(
     <nav className="film-nav film-card__nav">
       <ul className="film-nav__list">
-        <Tab link={AppRoutes.Films.replace(':id', film.id.toString())} tabName={'Overview'}></Tab>
-        <Tab link={AppRoutes.Details.replace(':id', film.id.toString())} tabName={'Details'}></Tab>
-        <Tab link={AppRoutes.Reviews.replace(':id', film.id.toString())} tabName={'Reviews'}></Tab>
+        <Tab link={AppRoutes.Films.replace(':id', film.id)} tabName={'Overview'}></Tab>
+        <Tab link={AppRoutes.Details.replace(':id', film.id)} tabName={'Details'}></Tab>
+        <Tab link={AppRoutes.Reviews.replace(':id', film.id)} tabName={'Reviews'}></Tab>
       </ul>
     </nav>
   );

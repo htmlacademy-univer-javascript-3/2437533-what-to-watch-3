@@ -9,14 +9,16 @@ export function FilmsListSorted(): JSX.Element {
   let films = useAppSelector((state) => state.films);
   const mainFilmGenre = useAppSelector((state) => state.genre);
   const visibleFilmsCount = useAppSelector((state) => state.currentGenreVisibleCount);
-  const mainFilmId = useAppSelector((state) => state.main.id);
+  const mainFilmId = useAppSelector((state) => state.mainFilm?.id);
 
 
   // eslint-disable-next-line @typescript-eslint/no-empty-function
-  useEffect(() => { }, [mainFilmGenre, visibleFilmsCount]);
-  films = films.filter((f) => f.id !== mainFilmId && (f.genre === mainFilmGenre || mainFilmGenre === Genre.All));
   const dispatch = useAppDispatch();
-  dispatch(setFilmsGenreCount(films.length));
+
+  useEffect(() => {
+    dispatch(setFilmsGenreCount(films.length));
+  }, [mainFilmGenre, visibleFilmsCount]);
+  films = films.filter((f) => f.id !== mainFilmId && (f.genre === mainFilmGenre || mainFilmGenre === Genre.All));
   films = films.slice(0, visibleFilmsCount);
 
   return (
