@@ -11,15 +11,21 @@ import {ShowMoreButton} from '../../components/show-more-button/show-more-button
 
 
 export function MainPage(): JSX.Element {
-  const mainFilm = useAppSelector((state) => state.main);
+  const mainFilm = useAppSelector((state) => state.mainFilm);
   const currentVisibleCount = useAppSelector((state) => state.currentGenreVisibleCount);
   const currentGenreCount = useAppSelector((state) => state.currentGenreCount);
+
+
+  if (mainFilm === null) {
+    return <div/>;
+  }
+
 
   return(
     <>
       <section className="film-card">
         <div className="film-card__bg">
-          <img src={mainFilm.previewImage} alt={mainFilm.name}/>
+          <img src={mainFilm.backgroundImage} alt={mainFilm.name}/>
         </div>
 
         <h1 className="visually-hidden">WTW</h1>
@@ -32,7 +38,7 @@ export function MainPage(): JSX.Element {
         <div className="film-card__wrap">
           <div className="film-card__info">
             <div className="film-card__poster">
-              <img src={mainFilm.previewImage} alt={mainFilm.name.concat(' ', 'poster')} width="218"
+              <img src={mainFilm.posterImage} alt={mainFilm.name.concat(' ', 'poster')} width="218"
                 height="327"
               />
             </div>

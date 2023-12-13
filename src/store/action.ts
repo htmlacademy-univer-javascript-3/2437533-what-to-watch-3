@@ -5,8 +5,11 @@ import {AppRoutes} from '../consts/appRoutes';
 import {UserData} from '../types/user-data';
 
 export const changeGenre = createAction<string>('genre/change');
-export const setFilms = createAction<FilmType[]>('genre/films');
-export const setMainFilm = createAction<FilmType>('films/mainId');
+export const setFilms = createAction<FilmType[]>('films/all');
+export const setMainFilm = createAction<FilmType>('films/main');
+export const setCurrentFilm = createAction<FilmType>('films/current');
+export const setSimilarFilms = createAction<FilmType[]>('films/similar');
+
 export const addCurrVisibleCount = createAction('films/visible_cnt');
 export const resetCurrVisibleCount = createAction('films/visible_cnt_reset');
 export const setFilmsGenreCount = createAction<number>('films/current_genre_films_cnt');

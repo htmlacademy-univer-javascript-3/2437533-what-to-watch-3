@@ -1,21 +1,26 @@
 import {createReducer} from '@reduxjs/toolkit';
 import {Genre} from '../consts/genres';
-import {filmsMock} from '../mocks/films';
 import {
   changeGenre,
   addCurrVisibleCount,
   setFilms,
   setMainFilm,
-  resetCurrVisibleCount, setFilmsGenreCount, requireAuthorization, setFilmDataLoadingStatus, setUserData
+  resetCurrVisibleCount,
+  setFilmsGenreCount,
+  requireAuthorization,
+  setFilmDataLoadingStatus,
+  setUserData, setCurrentFilm, setSimilarFilms
 } from './action';
 import {AuthorizationStatus} from '../consts/authorization';
 import {FilmType} from '../types/film-type';
 import {UserData} from '../types/user-data';
 
 type InitialState = {
-  main: FilmType;
+  mainFilm: FilmType | null;
+  currentFilm: FilmType | null;
   genre: string;
   films: FilmType[];
+  similarFilms: FilmType[];
   currentGenreVisibleCount: number;
   currentGenreCount: number;
   authorizationStatus: AuthorizationStatus;
@@ -26,9 +31,11 @@ type InitialState = {
 
 
 const initialState: InitialState = {
-  main: filmsMock[0],
+  mainFilm: null,
+  currentFilm: null,
   genre: Genre.All,
   films: [],
+  similarFilms: [],
   currentGenreVisibleCount: 8,
   currentGenreCount: 0,
   authorizationStatus: AuthorizationStatus.Unknown,
@@ -43,7 +50,13 @@ export const reducer = createReducer(initialState, (builder) => {
       state.genre = action.payload;
     })
     .addCase(setMainFilm, (state, action) => {
-      state.main = action.payload;
+      state.mainFilm = action.payload;
+    })
+    .addCase(setCurrentFilm, (state, action) => {
+      state.currentFilm = action.payload;
+    })
+    .addCase(setSimilarFilms, (state, action) => {
+      state.currentFilm = action.payload;
     })
     .addCase(setFilms, (state, action) => {
       state.films = action.payload;

@@ -3,11 +3,11 @@ import ReactDOM from 'react-dom/client';
 import {App} from './components/app/app';
 import {Provider} from 'react-redux';
 import {store} from './store';
-import {checkAuthAction, fetchFilmAction, fetchMainFilmAction} from './store/api-actions';
+import {checkAuthAction, fetchFilmsAction, fetchMainFilmAction} from './store/api-actions';
 import {ErrorMessage} from './components/error-message/error-message';
 
 
-store.dispatch(fetchFilmAction());
+store.dispatch(fetchFilmsAction());
 store.dispatch(fetchMainFilmAction());
 store.dispatch(checkAuthAction());
 
