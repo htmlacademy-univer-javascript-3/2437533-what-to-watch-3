@@ -7,7 +7,6 @@ import {FilmCardWrap} from '../../../components/film-card/film-card-wrap';
 import {FilmCardNav} from '../../../components/film-card/film-card-nav';
 import {useAppDispatch, useAppSelector} from '../../../hooks';
 import {fetchCommentsAction, fetchCurrentFilmAction, fetchSimilarFilmsAction} from '../../../store/api-actions';
-import {NotFoundPage} from '../../not-found-page/not-found-page';
 import {FilmsList} from '../../../components/small-film-card/films-list';
 import {LoadingScreen} from '../../loading-screen/loading-screen';
 
