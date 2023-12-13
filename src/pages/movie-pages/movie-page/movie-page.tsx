@@ -6,9 +6,10 @@ import {UserBlock} from '../../../components/user-block/user-block';
 import {FilmCardWrap} from '../../../components/film-card/film-card-wrap';
 import {FilmCardNav} from '../../../components/film-card/film-card-nav';
 import {useAppDispatch, useAppSelector} from '../../../hooks';
-import {fetchCurrentFilmAction, fetchSimilarFilmsAction} from '../../../store/api-actions';
+import {fetchCommentsAction, fetchCurrentFilmAction, fetchSimilarFilmsAction} from '../../../store/api-actions';
 import {NotFoundPage} from '../../not-found-page/not-found-page';
 import {FilmsList} from '../../../components/small-film-card/films-list';
+import {LoadingScreen} from '../../loading-screen/loading-screen';
 
 
 export function MoviePage(): JSX.Element {
@@ -22,13 +23,13 @@ export function MoviePage(): JSX.Element {
     if (id) {
       dispatch(fetchCurrentFilmAction(id));
       dispatch(fetchSimilarFilmsAction(id));
-      // dispatch(fetchCommentsMovie(id));
+      dispatch(fetchCommentsAction(id));
     }
   }, [id]);
 
 
   if (movie === null) {
-    return <NotFoundPage/>;
+    return <LoadingScreen/>;
   }
 
   return(
