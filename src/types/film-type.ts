@@ -1,4 +1,3 @@
-import {Rating} from '../consts/ratings';
 import {ReviewType} from './review-type';
 
 export type FilmType = {
@@ -17,7 +16,6 @@ export type FilmType = {
   runTime: number;
   genre: string;
   released: number;
-  ratingLevel: Rating;
   isFavorite: boolean;
   previewVideoLink: string;
   reviews: ReviewType[]; // delete
