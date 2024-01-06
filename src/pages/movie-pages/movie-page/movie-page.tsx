@@ -11,6 +11,7 @@ import {
 import {LoadingScreen} from '../../loading-screen/loading-screen';
 import {FilmCardHero} from '../../../components/film-card/film-card-hero';
 import {PageContent} from '../../../components/page-content/page-content';
+import {CalculateRatingLevel} from '../../../consts/ratings';
 
 
 export function MoviePage(): JSX.Element {
@@ -53,7 +54,7 @@ export function MoviePage(): JSX.Element {
               <div className="film-rating">
                 <div className="film-rating__score">{movie.rating}</div>
                 <p className="film-rating__meta">
-                  <span className="film-rating__level">{movie.ratingLevel}</span>
+                  <span className="film-rating__level">{CalculateRatingLevel(movie.rating)}</span>
                   <span className="film-rating__count">{movie.scoresCount} ratings</span>
                 </p>
               </div>
