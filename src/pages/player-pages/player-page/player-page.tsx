@@ -11,7 +11,6 @@ export function PlayerPage(): JSX.Element {
   const { id } = useParams();
   const dispatch = useAppDispatch();
 
-
   useEffect(() => {
     if (id) {
       dispatch(fetchCurrentFilmAction(id));
