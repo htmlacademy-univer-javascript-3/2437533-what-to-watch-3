@@ -3,15 +3,14 @@ import {useParams} from 'react-router-dom';
 import {FilmCardNav} from '../../../components/film-card/film-card-nav';
 import {useAppDispatch, useAppSelector} from '../../../hooks';
 import {
-  fetchCommentsAction,
   fetchCurrentFilmAction,
-  fetchReviewsAction,
   fetchSimilarFilmsAction
 } from '../../../store/api-actions';
 import {LoadingScreen} from '../../loading-screen/loading-screen';
 import {FilmCardHero} from '../../../components/film-card/film-card-hero';
 import {PageContent} from '../../../components/page-content/page-content';
 import {CalculateRatingLevel} from '../../../consts/ratings';
+import {setCurrentFilm} from '../../../store/action';
 
 
 export function MoviePage(): JSX.Element {
@@ -23,12 +22,11 @@ export function MoviePage(): JSX.Element {
 
 
   useEffect(() => {
-    if (id) {
-      dispatch(fetchCurrentFilmAction(id));
-      dispatch(fetchSimilarFilmsAction(id));
-      dispatch(fetchCommentsAction(id));
-      dispatch(fetchReviewsAction(id));
-    }
+    dispatch(fetchCurrentFilmAction(id));
+    dispatch(fetchSimilarFilmsAction(id));
+    return () => {
+      dispatch(setCurrentFilm(null));
+    };
   }, [dispatch, id, favoriteFilms]);
 
 

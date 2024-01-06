@@ -1,18 +1,38 @@
-import {JSX} from 'react';
+import {JSX, useEffect} from 'react';
 import {FilmCardNav} from '../../../components/film-card/film-card-nav';
 import {ReviewsCol} from '../../../components/review/reviews-col';
-import {useAppSelector} from '../../../hooks';
+import {useAppDispatch, useAppSelector} from '../../../hooks';
 import {FilmCardHero} from '../../../components/film-card/film-card-hero';
 import {PageContent} from '../../../components/page-content/page-content';
+import {useParams} from 'react-router-dom';
+import {
+  fetchCurrentFilmAction,
+  fetchReviewsAction,
+  fetchSimilarFilmsAction
+} from '../../../store/api-actions';
+import {setCurrentFilm} from '../../../store/action';
+import {LoadingScreen} from '../../loading-screen/loading-screen';
 
 
 export function MovieReviewsPage(): JSX.Element {
+  const id = useParams().id || '';
+  const dispatch = useAppDispatch();
   const movie = useAppSelector((state) => state.currentFilm);
-  const reviews = useAppSelector((state) => state.reviews);
   const similarFilms = useAppSelector((state) => state.similarFilms);
+  const favoriteFilms = useAppSelector((state) => state.favoriteFilms);
+  const reviews = useAppSelector((state) => state.reviews);
+
+  useEffect(() => {
+    dispatch(fetchCurrentFilmAction(id));
+    dispatch(fetchSimilarFilmsAction(id));
+    dispatch(fetchReviewsAction(id));
+    return () => {
+      dispatch(setCurrentFilm(null));
+    };
+  }, [dispatch, id, favoriteFilms]);
 
   if (movie === null) {
-    return <div/>;
+    return <LoadingScreen/>;
   }
 
   return(
