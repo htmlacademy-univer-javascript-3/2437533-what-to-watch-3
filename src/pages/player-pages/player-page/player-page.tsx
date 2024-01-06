@@ -18,7 +18,6 @@ export function PlayerPage(): JSX.Element {
     }
   }, [dispatch, id]);
 
-
   return(
     <Player></Player>
   );
