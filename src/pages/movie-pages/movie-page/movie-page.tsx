@@ -1,14 +1,16 @@
 import {JSX, useEffect} from 'react';
-import {Footer} from '../../../components/footer/footer';
 import {useParams} from 'react-router-dom';
-import {Logo} from '../../../components/logo/logo';
-import {UserBlock} from '../../../components/user-block/user-block';
-import {FilmCardWrap} from '../../../components/film-card/film-card-wrap';
 import {FilmCardNav} from '../../../components/film-card/film-card-nav';
 import {useAppDispatch, useAppSelector} from '../../../hooks';
-import {fetchCommentsAction, fetchCurrentFilmAction, fetchSimilarFilmsAction} from '../../../store/api-actions';
-import {FilmsList} from '../../../components/small-film-card/films-list';
+import {
+  fetchCommentsAction,
+  fetchCurrentFilmAction,
+  fetchReviewsAction,
+  fetchSimilarFilmsAction
+} from '../../../store/api-actions';
 import {LoadingScreen} from '../../loading-screen/loading-screen';
+import {FilmCardHero} from '../../../components/film-card/film-card-hero';
+import {PageContent} from '../../../components/page-content/page-content';
 
 
 export function MoviePage(): JSX.Element {
@@ -16,6 +18,7 @@ export function MoviePage(): JSX.Element {
   const dispatch = useAppDispatch();
   const movie = useAppSelector((state) => state.currentFilm);
   const similarFilms = useAppSelector((state) => state.similarFilms);
+  const favoriteFilms = useAppSelector((state) => state.favoriteFilms);
 
 
   useEffect(() => {
@@ -23,8 +26,9 @@ export function MoviePage(): JSX.Element {
       dispatch(fetchCurrentFilmAction(id));
       dispatch(fetchSimilarFilmsAction(id));
       dispatch(fetchCommentsAction(id));
+      dispatch(fetchReviewsAction(id));
     }
-  }, [id]);
+  }, [dispatch, id, favoriteFilms]);
 
 
   if (movie === null) {
@@ -34,25 +38,12 @@ export function MoviePage(): JSX.Element {
   return(
     <>
       <section className="film-card film-card--full">
-        <div className="film-card__hero">
-          <div className="film-card__bg">
-            <img src={movie.previewImage} alt={movie.name}/>
-          </div>
-
-          <h1 className="visually-hidden">WTW</h1>
-
-          <header className="page-header film-card__head">
-            <Logo></Logo>
-            <UserBlock></UserBlock>
-          </header>
-
-          <FilmCardWrap film={movie}></FilmCardWrap>
-        </div>
+        <FilmCardHero movie={movie}></FilmCardHero>
 
         <div className="film-card__wrap film-card__translate-top">
           <div className="film-card__info">
             <div className="film-card__poster film-card__poster--big">
-              <img src={movie.previewImage} alt={movie.name} width="218"
+              <img src={movie.posterImage} alt={movie.name} width="218"
                 height="327"
               />
             </div>
@@ -63,7 +54,7 @@ export function MoviePage(): JSX.Element {
                 <div className="film-rating__score">{movie.rating}</div>
                 <p className="film-rating__meta">
                   <span className="film-rating__level">{movie.ratingLevel}</span>
-                  <span className="film-rating__count">240 ratings</span>
+                  <span className="film-rating__count">{movie.scoresCount} ratings</span>
                 </p>
               </div>
 
@@ -81,14 +72,7 @@ export function MoviePage(): JSX.Element {
         </div>
       </section>
 
-      <div className="page-content">
-        <section className="catalog catalog--like-this">
-          <h2 className="catalog__title">More like this</h2>
-          <FilmsList films={similarFilms}/>
-        </section>
-
-        <Footer></Footer>
-      </div>
+      <PageContent similarFilms={similarFilms}></PageContent>
     </>
   );
 }

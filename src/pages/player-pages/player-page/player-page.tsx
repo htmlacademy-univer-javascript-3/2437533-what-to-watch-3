@@ -1,12 +1,25 @@
-import {JSX} from 'react';
+import {JSX, useEffect} from 'react';
 import {Player} from '../../../components/player/player';
-import {useAppSelector} from '../../../hooks';
+import {useParams} from 'react-router-dom';
+import {
+  fetchCurrentFilmAction
+} from '../../../store/api-actions';
+import {useAppDispatch} from '../../../hooks';
 
 
 export function PlayerPage(): JSX.Element {
-  const films = useAppSelector((state) => state.films);
+  const { id } = useParams();
+  const dispatch = useAppDispatch();
+
+
+  useEffect(() => {
+    if (id) {
+      dispatch(fetchCurrentFilmAction(id));
+    }
+  }, [dispatch, id]);
+
 
   return(
-    <Player films={films}></Player>
+    <Player></Player>
   );
 }

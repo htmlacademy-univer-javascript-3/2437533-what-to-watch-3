@@ -7,18 +7,15 @@ import {setFilmsGenreCount} from '../../store/action';
 
 export function FilmsListSorted(): JSX.Element {
   let films = useAppSelector((state) => state.films);
-  const mainFilmGenre = useAppSelector((state) => state.genre);
+  const selectedGenre = useAppSelector((state) => state.genre);
   const visibleFilmsCount = useAppSelector((state) => state.currentGenreVisibleCount);
-  const mainFilmId = useAppSelector((state) => state.mainFilm?.id);
-
-
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  useAppSelector((state) => state.mainFilm?.id);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
     dispatch(setFilmsGenreCount(films.length));
-  }, [mainFilmGenre, visibleFilmsCount]);
-  films = films.filter((f) => f.id !== mainFilmId && (f.genre === mainFilmGenre || mainFilmGenre === Genre.All));
+  }, [dispatch, films.length, selectedGenre, visibleFilmsCount]);
+  films = films.filter((f) => f.genre === selectedGenre || selectedGenre === Genre.All);
   films = films.slice(0, visibleFilmsCount);
 
   return (

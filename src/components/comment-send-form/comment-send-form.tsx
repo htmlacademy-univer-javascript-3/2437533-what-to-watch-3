@@ -1,5 +1,7 @@
-import {FormEvent, JSX} from 'react';
+import {ChangeEventHandler, FormEvent, JSX} from 'react';
 import { useState } from 'react';
+import {useAppDispatch, useAppSelector} from '../../hooks';
+import {addReviewAction} from '../../store/api-actions';
 
 
 type CommentSendFormProps = {
@@ -7,14 +9,25 @@ type CommentSendFormProps = {
 };
 
 export function CommentSendForm({ onAnswer }: CommentSendFormProps): JSX.Element {
-  const [userAnswers, setUserAnswers] = useState(0);
+  const [userScore, setUserScore] = useState(0);
+  const [comment, setComment] = useState('');
+  const dispatch = useAppDispatch();
+  const id = useAppSelector((state) => state.currentFilm?.id) || '1';
+
+  const handleCommentChange: ChangeEventHandler<HTMLTextAreaElement> = (evt) => {
+    setComment(evt.target.value);
+  };
+
+  const handleSubmit = () => {
+    dispatch(addReviewAction({comment: comment, rating: userScore, id: id}));
+  };
 
   return (
     <div className="add-review">
       <form action="#" className="add-review__form"
         onSubmit={(evt: FormEvent<HTMLFormElement>) => {
           evt.preventDefault();
-          onAnswer(userAnswers);
+          onAnswer(userScore);
         }}
       >
         <div className="rating">
@@ -28,7 +41,7 @@ export function CommentSendForm({ onAnswer }: CommentSendFormProps): JSX.Element
                   name="rating"
                   value={`${num}`}
                   onChange={() => {
-                    setUserAnswers(num);
+                    setUserScore(num);
                   }}
                 />
                 <label className="rating__label" htmlFor={`star-${num}`}>
@@ -41,11 +54,11 @@ export function CommentSendForm({ onAnswer }: CommentSendFormProps): JSX.Element
 
         <div className="add-review__text">
           <textarea className="add-review__textarea" name="review-text" id="review-text"
-            placeholder="Review text"
+            placeholder="Review text" minLength={50} maxLength={400} onChange={handleCommentChange}
           >
           </textarea>
           <div className="add-review__submit">
-            <button className="add-review__btn" type="submit">Post</button>
+            <button className="add-review__btn" type="submit" onClick={handleSubmit}>Post</button>
           </div>
         </div>
       </form>
