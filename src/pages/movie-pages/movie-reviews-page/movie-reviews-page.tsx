@@ -1,18 +1,16 @@
 import {JSX} from 'react';
-import {Footer} from '../../../components/footer/footer';
-import {Logo} from '../../../components/logo/logo';
-import {UserBlock} from '../../../components/user-block/user-block';
-import {FilmCardWrap} from '../../../components/film-card/film-card-wrap';
 import {FilmCardNav} from '../../../components/film-card/film-card-nav';
 import {ReviewsCol} from '../../../components/review/reviews-col';
-import {FilmsListSorted} from '../../../components/small-film-card/films-list-sorted';
 import {useAppSelector} from '../../../hooks';
+import {FilmCardHero} from '../../../components/film-card/film-card-hero';
+import {PageContent} from '../../../components/page-content/page-content';
 
 
 export function MovieReviewsPage(): JSX.Element {
-  // const params = useParams();
-  // const dispatch = useAppDispatch();
   const movie = useAppSelector((state) => state.currentFilm);
+  const reviews = useAppSelector((state) => state.reviews);
+  const similarFilms = useAppSelector((state) => state.similarFilms);
+
   if (movie === null) {
     return <div/>;
   }
@@ -20,25 +18,12 @@ export function MovieReviewsPage(): JSX.Element {
   return(
     <>
       <section className="film-card film-card--full">
-        <div className="film-card__hero">
-          <div className="film-card__bg">
-            <img src={movie.previewImage} alt={movie.name}/>
-          </div>
-
-          <h1 className="visually-hidden">WTW</h1>
-
-          <header className="page-header film-card__head">
-            <Logo></Logo>
-            <UserBlock></UserBlock>
-          </header>
-
-          <FilmCardWrap film={movie}></FilmCardWrap>
-        </div>
+        <FilmCardHero movie={movie}></FilmCardHero>
 
         <div className="film-card__wrap film-card__translate-top">
           <div className="film-card__info">
             <div className="film-card__poster film-card__poster--big">
-              <img src={movie.previewImage} alt={movie.name} width="218"
+              <img src={movie.posterImage} alt={movie.name} width="218"
                 height="327"
               />
             </div>
@@ -47,24 +32,15 @@ export function MovieReviewsPage(): JSX.Element {
               <FilmCardNav film={movie}></FilmCardNav>
 
               <div className="film-card__reviews film-card__row">
-
-                <ReviewsCol reviews={movie.reviews.slice(0, Math.ceil(movie.reviews.length / 2))}></ReviewsCol>
-                <ReviewsCol reviews={movie.reviews.slice(Math.ceil(movie.reviews.length / 2))}></ReviewsCol>
-
+                <ReviewsCol reviews={reviews.slice(0, Math.ceil(reviews.length / 2))}></ReviewsCol>
+                <ReviewsCol reviews={reviews.slice(Math.ceil(reviews.length / 2))}></ReviewsCol>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      <div className="page-content">
-        <section className="catalog catalog--like-this">
-          <h2 className="catalog__title">More like this</h2>
-          <FilmsListSorted />
-        </section>
-
-        <Footer></Footer>
-      </div>
+      <PageContent similarFilms={similarFilms}></PageContent>
     </>
   );
 }

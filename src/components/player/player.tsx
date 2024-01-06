@@ -1,59 +1,106 @@
-import {FilmType} from '../../types/film-type';
 import {useEffect, useRef, useState} from 'react';
-import {useParams} from 'react-router-dom';
-import {PlayerButton} from './player-button';
-import cn from 'classnames';
+import {NotFoundPage} from '../../pages/not-found-page/not-found-page';
+import {useAppDispatch, useAppSelector} from '../../hooks';
+import {fetchFilmsAction} from '../../store/api-actions';
+import {Link} from 'react-router-dom';
 
-export type VideoPlayerProps = {
-  films: FilmType[];
-}
-
-export function Player({films}: VideoPlayerProps) {
-  const params = useParams();
-  const paramsId = parseInt(params.id || '1', 10);
-  const movie = films.find((f) => f.id === paramsId) || films[0];
-
-  const [isPlaying, setIsPlaying] = useState(false);
+export function Player() {
+  const film = useAppSelector((state) => state.currentFilm);
+  const dispatch = useAppDispatch();
   const videoRef = useRef<HTMLVideoElement | null>(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [progress, setProgress] = useState(0);
+  const [duration, setDuration] = useState(0);
+  const isMounted = useRef(false);
+
   useEffect(() => {
-    const playerElement = videoRef.current;
-
-    if (!playerElement) {
-      return;
+    if (!isMounted.current) {
+      if (!film) {
+        dispatch(fetchFilmsAction());
+      }
+      isMounted.current = true;
     }
-
+  }, [film, dispatch]);
+  const handlePlayButtonClick = () => {
     if (isPlaying) {
-      playerElement.play();
-      return;
+      videoRef.current?.pause();
+    } else {
+      videoRef.current?.play();
     }
+    setIsPlaying(!isPlaying);
+  };
+  const handleProgressChange = () => {
+    const durationTime = videoRef.current?.duration || 0;
+    const currentTime = videoRef.current?.currentTime || 0;
+    if (durationTime && currentTime) {
+      setProgress(currentTime / durationTime * 100);
+      setDuration(durationTime - currentTime);
+    }
+  };
+  const getDurationFormat = (seconds: number): string => {
+    const hours = Math.floor(seconds / 3600);
+    const minutes = Math.floor((seconds % 3600) / 60);
+    const remainingSeconds = Math.floor(seconds % 60);
 
-    playerElement.pause();
-  }, [isPlaying]);
+    const formattedHours = String(hours).padStart(2, '0');
+    const formattedMinutes = String(minutes).padStart(2, '0');
+    const formattedSeconds = String(remainingSeconds).padStart(2, '0');
+    if (seconds / 60 / 60 >= 1) {
+      return `-${formattedHours}:${formattedMinutes}:${formattedSeconds}`;
+    }
+    return `-${formattedMinutes}:${formattedSeconds}`;
+  };
+  const handleFullScreenButtonClick = () => {
+    if (videoRef.current?.requestFullscreen) {
+      videoRef.current?.requestFullscreen();
+    }
+  };
+  if (!film) {
+    return <NotFoundPage/>;
+  }
   return (
     <div className="player">
-      <video src={movie.previewVideoLink} className="player__video" poster={movie.previewImage}></video>
+      <video
+        ref={videoRef}
+        src={film.videoLink}
+        onTimeUpdate={handleProgressChange}
+        className="player__video"
+        poster={film.backgroundImage}
+      >
+      </video>
 
-      <button type="button" className="player__exit">Exit</button>
-
+      <Link to={`/films/${film.id}/`}>
+        <button type="button" className="player__exit">Exit</button>
+      </Link>
       <div className="player__controls">
         <div className="player__controls-row">
           <div className="player__time">
-            <progress className="player__progress" value="30" max="100"></progress>
-            <div className="player__toggler" style={{left: '30%'}}>Toggler</div>
+            <progress className="player__progress" value={progress} max="100"></progress>
+            <div className="player__toggler" style={{left: `${progress}%`}}>Toggler</div>
           </div>
-          <div className="player__time-value">1:30:29</div>
+          <div className="player__time-value">{getDurationFormat(duration)}</div>
         </div>
 
         <div className="player__controls-row">
-          <PlayerButton height={'19'} width={'19'} xlinkHref={cn({'#play-s': !isPlaying},
-            {'#pause': isPlaying})} nameButton={cn({'Play': !isPlaying}, {'Pause': isPlaying})}
-          className={'player__play'} setIsPlaying={setIsPlaying} isPlaying={isPlaying}
-          />
-          <div className="player__name">Transpotting</div>
-          <PlayerButton height={'27'} width={'27'} xlinkHref={'#full-screen'} nameButton={'Full screen'}
-            className={'player__full-screen'} setIsPlaying={setIsPlaying}
-            isPlaying={isPlaying}
-          />
+          <button type="button" className="player__play" onClick={handlePlayButtonClick}>
+            {isPlaying ? (
+              <svg viewBox="0 0 14 21" width="14" height="21">
+                <use xlinkHref="#pause"></use>
+              </svg>
+            ) : (
+              <svg viewBox="0 0 19 19" width="19" height="19">
+                <use xlinkHref="#play-s"></use>
+              </svg>
+            )}
+          </button>
+          <div className="player__name">{film.name}</div>
+
+          <button type="button" className="player__full-screen" onClick={handleFullScreenButtonClick}>
+            <svg viewBox="0 0 27 27" width="27" height="27">
+              <use xlinkHref="#full-screen"></use>
+            </svg>
+            <span>Full screen</span>
+          </button>
         </div>
       </div>
     </div>

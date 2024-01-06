@@ -9,12 +9,13 @@ import {
   setFilmsGenreCount,
   requireAuthorization,
   setFilmDataLoadingStatus,
-  setUserData, setCurrentFilm, setSimilarFilms, setComments
+  setUserData, setCurrentFilm, setSimilarFilms, setComments, setReviews, setFavoriteFilms
 } from './action';
 import {AuthorizationStatus} from '../consts/authorization';
 import {FilmType} from '../types/film-type';
 import {UserData} from '../types/user-data';
-import {CommentType} from "../types/comment-type";
+import {CommentType} from '../types/comment-type';
+import {ReviewType} from '../types/review-type';
 
 type InitialState = {
   mainFilm: FilmType | null;
@@ -22,6 +23,8 @@ type InitialState = {
   genre: string;
   films: FilmType[];
   similarFilms: FilmType[];
+  favoriteFilms: FilmType[];
+  reviews: ReviewType[];
   comments: CommentType[];
   currentGenreVisibleCount: number;
   currentGenreCount: number;
@@ -38,6 +41,8 @@ const initialState: InitialState = {
   genre: Genre.All,
   films: [],
   similarFilms: [],
+  favoriteFilms: [],
+  reviews: [],
   comments:[],
   currentGenreVisibleCount: 8,
   currentGenreCount: 0,
@@ -60,6 +65,12 @@ export const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(setSimilarFilms, (state, action) => {
       state.similarFilms = action.payload;
+    })
+    .addCase(setFavoriteFilms, (state, action) => {
+      state.favoriteFilms = action.payload;
+    })
+    .addCase(setReviews, (state, action) => {
+      state.reviews = action.payload;
     })
     .addCase(setComments, (state, action) => {
       state.comments = action.payload;

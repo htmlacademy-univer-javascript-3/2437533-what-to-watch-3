@@ -3,23 +3,26 @@ import {Footer} from '../../components/footer/footer';
 import {GenresList} from '../../components/genres-list/genres-list';
 import {Logo} from '../../components/logo/logo';
 import {UserBlock} from '../../components/user-block/user-block';
-import {Link} from 'react-router-dom';
-import {AppRoutes} from '../../consts/appRoutes';
 import {FilmsListSorted} from '../../components/small-film-card/films-list-sorted';
 import {useAppSelector} from '../../hooks';
 import {ShowMoreButton} from '../../components/show-more-button/show-more-button';
+import {Genre} from '../../consts/genres';
+import {PlayButton} from '../../components/buttons/play-button';
+import {AddToListButton} from '../../components/buttons/add-to-list-button';
+import {InListButton} from '../../components/buttons/in-list-button';
 
 
 export function MainPage(): JSX.Element {
   const mainFilm = useAppSelector((state) => state.mainFilm);
   const currentVisibleCount = useAppSelector((state) => state.currentGenreVisibleCount);
-  const currentGenreCount = useAppSelector((state) => state.currentGenreCount);
+  const currGenre = useAppSelector((state) => state.genre);
+  const currentGenreCount = useAppSelector((state) => state.films).filter((f) =>
+    f.genre === currGenre || currGenre === Genre.All).length;
 
 
   if (mainFilm === null) {
     return <div/>;
   }
-
 
   return(
     <>
@@ -51,19 +54,8 @@ export function MainPage(): JSX.Element {
               </p>
 
               <div className="film-card__buttons">
-                <Link to={AppRoutes.Player.replace(':id', mainFilm.id.toString())} className="btn btn--play film-card__button" type="button">
-                  <svg viewBox="0 0 19 19" width="19" height="19">
-                    <use xlinkHref="#play-s"></use>
-                  </svg>
-                  <span>Play</span>
-                </Link>
-                <Link to={AppRoutes.MyList} className="btn btn--play film-card__button" type="button">
-                  <svg viewBox="0 0 19 20" width="19" height="20">
-                    <use xlinkHref="#add"></use>
-                  </svg>
-                  <span>My list</span>
-                  <span className="film-card__count">9</span>
-                </Link>
+                <PlayButton id={mainFilm.id.toString()}></PlayButton>
+                {mainFilm.isFavorite ? (<InListButton id={mainFilm.id}></InListButton>) : (<AddToListButton id={mainFilm.id}></AddToListButton>)}
               </div>
             </div>
           </div>
