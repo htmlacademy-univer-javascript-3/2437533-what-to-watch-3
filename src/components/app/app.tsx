@@ -42,7 +42,12 @@ export function App() {
           <Route path={AppRoutes.Reviews} element={<MovieReviewsPage />} />
           <Route path={AppRoutes.Details} element={<MovieDetailsPage />} />
           <Route path={AppRoutes.Player} element={<PlayerPage />} />
-          <Route path={AppRoutes.AddReview} element={<AddReviewPage />} />
+          <Route path={AppRoutes.AddReview} element={
+            <PrivateRoute >
+              <AddReviewPage />
+            </PrivateRoute >
+          }
+          />
         </Route>
         <Route path="*" element={<NotFoundPage />}/>
       </Routes>

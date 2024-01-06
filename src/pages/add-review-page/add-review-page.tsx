@@ -1,17 +1,31 @@
-import {JSX} from 'react';
-import {Link} from 'react-router-dom';
+import {JSX, useEffect} from 'react';
+import {Link, useParams} from 'react-router-dom';
 import {CommentSendForm} from '../../components/comment-send-form/comment-send-form';
 import { useState } from 'react';
-import {useAppSelector} from '../../hooks';
+import {useAppDispatch, useAppSelector} from '../../hooks';
 import {UserBlock} from '../../components/user-block/user-block';
 import {Logo} from '../../components/logo/logo';
 import {LoadingScreen} from '../loading-screen/loading-screen';
 import {APIRoute} from '../../consts/api-actions';
+import {
+  fetchCurrentFilmAction,
+} from '../../store/api-actions';
+import {setCurrentFilm} from '../../store/action';
 
 
 export function AddReviewPage(): JSX.Element {
   const [, setFilmRating] = useState(0);
+  const id = useParams().id || '';
   const movie = useAppSelector((state) => state.currentFilm);
+  const dispatch = useAppDispatch();
+
+
+  useEffect(() => {
+    dispatch(fetchCurrentFilmAction(id));
+    return () => {
+      dispatch(setCurrentFilm(null));
+    };
+  }, [dispatch, id]);
 
   if (movie === null) {
     return <LoadingScreen/>;
