@@ -1,6 +1,8 @@
 import {useAppDispatch, useAppSelector} from '../../hooks';
 import {addFilmToFavorites} from '../../store/api-actions';
 import {AuthorizationStatus} from '../../consts/authorization';
+import {redirectToRoute} from "../../store/action";
+import {AppRoutes} from "../../consts/appRoutes";
 
 
 type AddToListButtonProps = {
@@ -14,6 +16,9 @@ export function AddToListButton({id}: AddToListButtonProps): JSX.Element {
   const dispatch = useAppDispatch();
 
   const handleSubmit = () => {
+    if (authStatus !== AuthorizationStatus.Auth){
+      dispatch(redirectToRoute(AppRoutes.Login));
+    }
     dispatch(addFilmToFavorites(id));
   };
 
