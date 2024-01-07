@@ -9,7 +9,7 @@ import {
   setFilmsGenreCount,
   requireAuthorization,
   setFilmDataLoadingStatus,
-  setUserData, setCurrentFilm, setSimilarFilms, setReviews, setFavoriteFilms
+  setUserData, setCurrentFilm, setSimilarFilms, setReviews, setFavoriteFilms, setError
 } from './action';
 import {AuthorizationStatus} from '../consts/authorization';
 import {FilmType} from '../types/film-type';
@@ -86,6 +86,9 @@ export const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(setFilmDataLoadingStatus, (state, action) => {
       state.isFilmDataLoading = action.payload;
+    })
+    .addCase(setError, (state, action) => {
+      state.error = action.payload;
     })
     .addCase(setUserData, (state, action) => {
       state.user = action.payload;

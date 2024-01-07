@@ -1,2 +1,3 @@
 export const TIMEOUT_BEFORE_PLAYING = 1000;
 export const TIMEOUT_SHOW_ERROR = 2000;
+export const REQUEST_TIMEOUT = 5000;

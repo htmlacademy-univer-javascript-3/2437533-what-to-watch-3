@@ -1,5 +1,5 @@
 import {useEffect, useRef, useState} from 'react';
-import {NotFoundPage} from '../../pages/not-found-page/not-found-page/not-found-page';
+import {NotFoundPage} from '../../pages/not-found-page/not-found-page';
 import {useAppDispatch, useAppSelector} from '../../hooks';
 import {fetchFilmsAction} from '../../store/api-actions';
 import {Link} from 'react-router-dom';
