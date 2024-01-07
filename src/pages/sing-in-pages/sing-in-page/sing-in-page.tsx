@@ -27,7 +27,7 @@ export function SingInPage(): JSX.Element {
 
       <div className="sign-in user-page__content">
         <form
-          action="sing-in-pages/sing-in-page#"
+          action="src/pages/sing-in-pages/sing-in-page/sing-in-page#"
           className="sign-in__form"
           onSubmit={handleSubmit}
         >

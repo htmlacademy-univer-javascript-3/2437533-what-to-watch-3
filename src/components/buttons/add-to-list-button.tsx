@@ -18,8 +18,9 @@ export function AddToListButton({id}: AddToListButtonProps): JSX.Element {
   const handleSubmit = () => {
     if (authStatus !== AuthorizationStatus.Auth){
       dispatch(redirectToRoute(AppRoutes.Login));
+    } else {
+      dispatch(addFilmToFavorites(id));
     }
-    dispatch(addFilmToFavorites(id));
   };
 
   return(

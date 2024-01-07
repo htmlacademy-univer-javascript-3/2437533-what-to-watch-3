@@ -1,5 +1,3 @@
-import {ReviewType} from './review-type';
-
 export type FilmType = {
   id: string;
   name: string;
@@ -18,5 +16,4 @@ export type FilmType = {
   released: number;
   isFavorite: boolean;
   previewVideoLink: string;
-  reviews: ReviewType[]; // delete
 };
