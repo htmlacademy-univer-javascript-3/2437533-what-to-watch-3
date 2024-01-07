@@ -1,9 +1,9 @@
 import {JSX} from 'react';
-import {FilmsList} from '../../components/small-film-card/films-list';
-import {Footer} from '../../components/footer/footer';
-import {useAppSelector} from '../../hooks';
-import {Logo} from '../../components/logo/logo';
-import {UserBlock} from '../../components/user-block/user-block';
+import {FilmsList} from '../../../components/small-film-card/films-list';
+import {Footer} from '../../../components/footer/footer';
+import {useAppSelector} from '../../../hooks';
+import {Logo} from '../../../components/logo/logo';
+import {UserBlock} from '../../../components/user-block/user-block';
 
 export function MyListPage(): JSX.Element {
   const favoriteFilms = useAppSelector((state) => state.favoriteFilms);

@@ -4,7 +4,7 @@ import {AuthorizationStatus} from '../consts/authorization';
 import {UserData} from '../types/user-data';
 import {ReviewType} from '../types/review-type';
 
-export const changeGenre = createAction<string>('genre/change');
+export const changeGenre = createAction<string>('films/genre_change');
 export const setFilms = createAction<FilmType[]>('films/all');
 export const setMainFilm = createAction<FilmType>('films/main');
 export const setCurrentFilm = createAction<FilmType | null>('films/current');
@@ -16,6 +16,6 @@ export const resetCurrVisibleCount = createAction('films/visible_cnt_reset');
 export const setFilmsGenreCount = createAction<number>('films/current_genre_films_cnt');
 export const requireAuthorization = createAction<AuthorizationStatus>('user/requireAuthorization');
 export const setFilmDataLoadingStatus = createAction<boolean>('data/setFilmDataLoadingStatus');
-export const setError = createAction<string | null>('films/setError');
-export const redirectToRoute = createAction<string>('wtw/redirectToRoute');
-export const setUserData = createAction<UserData>('data/user');
+export const setError = createAction<string | null>('data/setError');
+export const redirectToRoute = createAction<string>('data/redirectToRoute');
+export const setUserData = createAction<UserData>('user/set_data');
