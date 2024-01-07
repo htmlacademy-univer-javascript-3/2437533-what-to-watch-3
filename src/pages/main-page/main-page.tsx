@@ -1,24 +1,29 @@
-import {JSX} from 'react';
+import {JSX, useEffect} from 'react';
 import {Footer} from '../../components/footer/footer';
 import {GenresList} from '../../components/genres-list/genres-list';
 import {Logo} from '../../components/logo/logo';
 import {UserBlock} from '../../components/user-block/user-block';
 import {FilmsListSorted} from '../../components/small-film-card/films-list-sorted';
-import {useAppSelector} from '../../hooks';
+import {useAppDispatch, useAppSelector} from '../../hooks';
 import {ShowMoreButton} from '../../components/show-more-button/show-more-button';
 import {Genre} from '../../consts/genres';
 import {PlayButton} from '../../components/buttons/play-button';
 import {AddToListButton} from '../../components/buttons/add-to-list-button';
 import {InListButton} from '../../components/buttons/in-list-button';
+import {resetCurrVisibleCount} from '../../store/action';
 
 
 export function MainPage(): JSX.Element {
+  const dispatch = useAppDispatch();
   const mainFilm = useAppSelector((state) => state.mainFilm);
   const currentVisibleCount = useAppSelector((state) => state.currentGenreVisibleCount);
   const currGenre = useAppSelector((state) => state.genre);
   const currentGenreCount = useAppSelector((state) => state.films).filter((f) =>
     f.genre === currGenre || currGenre === Genre.All).length;
 
+  useEffect(() => () => {
+    dispatch(resetCurrVisibleCount());
+  }, [dispatch]);
 
   if (mainFilm === null) {
     return <div/>;

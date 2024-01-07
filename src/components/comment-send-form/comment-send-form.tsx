@@ -11,15 +11,21 @@ type CommentSendFormProps = {
 export function CommentSendForm({ onAnswer }: CommentSendFormProps): JSX.Element {
   const [userScore, setUserScore] = useState(0);
   const [comment, setComment] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   const dispatch = useAppDispatch();
   const id = useAppSelector((state) => state.currentFilm?.id) || '1';
+  const isInputValid = () => comment.trim().length >= 50 && userScore !== 0 && !isSubmitting;
+
 
   const handleCommentChange: ChangeEventHandler<HTMLTextAreaElement> = (evt) => {
     setComment(evt.target.value);
   };
 
   const handleSubmit = () => {
+    setIsSubmitting(true);
     dispatch(addReviewAction({comment: comment, rating: userScore, id: id}));
+    setIsSubmitting(false);
   };
 
   return (
@@ -58,7 +64,7 @@ export function CommentSendForm({ onAnswer }: CommentSendFormProps): JSX.Element
           >
           </textarea>
           <div className="add-review__submit">
-            <button className="add-review__btn" type="submit" onClick={handleSubmit}>Post</button>
+            <button className="add-review__btn" disabled={!isInputValid()} type="submit" onClick={handleSubmit}>Post</button>
           </div>
         </div>
       </form>
