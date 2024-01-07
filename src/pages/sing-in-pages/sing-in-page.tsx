@@ -1,13 +1,17 @@
 import {FormEvent, JSX, useRef} from 'react';
 import {PageHeader} from '../../components/page-header/page-header';
 import {Footer} from '../../components/footer/footer';
-import {useAppDispatch} from '../../hooks';
+import {useAppDispatch, useAppSelector} from '../../hooks';
 import {loginAction} from '../../store/api-actions';
 import {ErrorMessage} from '../../components/error-message/error-message';
+import {AuthorizationStatus} from '../../consts/authorization';
+import {redirectToRoute} from '../../store/action';
+import {AppRoutes} from '../../consts/appRoutes';
 
 export function SingInPage(): JSX.Element {
   const loginRef = useRef<HTMLInputElement | null>(null);
   const passwordRef = useRef<HTMLInputElement | null>(null);
+  const authStatus = useAppSelector((state) => state.authorizationStatus);
 
   const dispatch = useAppDispatch();
 
@@ -21,6 +25,10 @@ export function SingInPage(): JSX.Element {
       }));
     }
   };
+
+  if (authStatus === AuthorizationStatus.Auth) {
+    dispatch(redirectToRoute(AppRoutes.Main));
+  }
 
   return(
     <div className="user-page">
