@@ -4,10 +4,16 @@ import {AppDispatchType, StateType} from '../types/state-type';
 import {FilmType} from '../types/film-type';
 import {
   redirectToRoute,
-  requireAuthorization, setCurrentFilm, setError, setFavoriteFilms,
+  requireAuthorization,
+  setCurrentFilm,
+  setError,
+  setFavoriteFilms,
   setFilmDataLoadingStatus,
   setFilms,
-  setMainFilm, setReviews, setSimilarFilms, setUserData
+  setMainFilm,
+  setReviews,
+  setSimilarFilms,
+  setUserData
 } from './action';
 import {APIRoute} from '../consts/api-actions';
 import {AuthData} from '../types/auth-data';
@@ -163,8 +169,9 @@ export const addReviewAction = createAsyncThunk<void, CreateReviewType, {
   extra: AxiosInstance;
 }>(
   'films/review',
-  async ({comment, rating, id}, {extra: api}) => {
+  async ({comment, rating, id}, {dispatch ,extra: api}) => {
     await api.post(`${APIRoute.Comments}/${id}`, {comment, rating});
+    dispatch(redirectToRoute(`${APIRoute.Films}/${id}${APIRoute.Review}`));
   },
 );
 
