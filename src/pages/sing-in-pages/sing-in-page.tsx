@@ -1,8 +1,9 @@
 import {FormEvent, JSX, useRef} from 'react';
-import {PageHeader} from '../../../components/page-header/page-header';
-import {Footer} from '../../../components/footer/footer';
-import {useAppDispatch} from '../../../hooks';
-import {loginAction} from '../../../store/api-actions';
+import {PageHeader} from '../../components/page-header/page-header';
+import {Footer} from '../../components/footer/footer';
+import {useAppDispatch} from '../../hooks';
+import {loginAction} from '../../store/api-actions';
+import {ErrorMessage} from '../../components/error-message/error-message';
 
 export function SingInPage(): JSX.Element {
   const loginRef = useRef<HTMLInputElement | null>(null);
@@ -27,11 +28,12 @@ export function SingInPage(): JSX.Element {
 
       <div className="sign-in user-page__content">
         <form
-          action="src/pages/sing-in-pages/sing-in-page/sing-in-page#"
+          action="src/pages/sing-in-pages/sing-in-page#"
           className="sign-in__form"
           onSubmit={handleSubmit}
         >
           <div className="sign-in__fields">
+            <ErrorMessage></ErrorMessage>
             <div className="sign-in__field">
               <input
                 ref={loginRef}

@@ -183,13 +183,9 @@ export const addFilmToFavorites = createAsyncThunk<void, string, {
 }>(
   'films/add_favorite',
   async (id, {dispatch, extra: api}) => {
-    try {
-      await api.post(`${APIRoute.Favorite}/${id}/1`, {});
-      dispatch(fetchFavoriteFilmsAction());
-      dispatch(fetchMainFilmAction());
-    } catch {
-      dispatch(setError('Error'));
-    }
+    await api.post(`${APIRoute.Favorite}/${id}/1`, {});
+    dispatch(fetchFavoriteFilmsAction());
+    dispatch(fetchMainFilmAction());
   },
 );
 

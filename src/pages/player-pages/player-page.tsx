@@ -1,10 +1,10 @@
 import {JSX, useEffect} from 'react';
-import {Player} from '../../../components/player/player';
+import {Player} from '../../components/player/player';
 import {useParams} from 'react-router-dom';
 import {
   fetchCurrentFilmAction
-} from '../../../store/api-actions';
-import {useAppDispatch} from '../../../hooks';
+} from '../../store/api-actions';
+import {useAppDispatch} from '../../hooks';
 
 
 export function PlayerPage(): JSX.Element {
