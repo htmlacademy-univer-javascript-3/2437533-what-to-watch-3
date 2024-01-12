@@ -4,9 +4,9 @@ import {Link} from 'react-router-dom';
 import {useAppSelector} from '../../hooks';
 import {useEffect} from 'react';
 import {AuthorizationStatus} from '../../consts/authorization';
-import {PlayButton} from '../buttons/play-button';
-import {AddToListButton} from '../buttons/add-to-list-button';
-import {InListButton} from '../buttons/in-list-button';
+import {PlayButton} from '../play-button/play-button';
+import {AddToListButton} from '../add-to-list-button/add-to-list-button';
+import {InListButton} from '../in-list-button/in-list-button';
 
 type FilmCardButtonsProps = {
   film: FilmType;
@@ -14,8 +14,7 @@ type FilmCardButtonsProps = {
 
 export function FilmCardButtons({film}: FilmCardButtonsProps): JSX.Element {
   const authStatus = useAppSelector((state) => state.authorizationStatus);
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
-  useEffect(() => { }, [authStatus]);
+  useEffect(() => undefined, [authStatus]);
 
   return(
     <div className="film-card__buttons">

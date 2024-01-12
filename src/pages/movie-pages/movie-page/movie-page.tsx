@@ -1,13 +1,13 @@
 import {JSX, useEffect} from 'react';
 import {useParams} from 'react-router-dom';
-import {FilmCardNav} from '../../../components/film-card/film-card-nav';
+import {FilmCardNav} from '../../../components/film-card-nav/film-card-nav';
 import {useAppDispatch, useAppSelector} from '../../../hooks';
 import {
   fetchCurrentFilmAction,
   fetchSimilarFilmsAction
 } from '../../../store/api-actions';
 import {LoadingScreen} from '../../loading-screen/loading-screen';
-import {FilmCardHero} from '../../../components/film-card/film-card-hero';
+import {FilmCardHero} from '../../../components/film-card-hero/film-card-hero';
 import {PageContent} from '../../../components/page-content/page-content';
 import {CalculateRatingLevel} from '../../../consts/ratings';
 import {setCurrentFilm} from '../../../store/action';

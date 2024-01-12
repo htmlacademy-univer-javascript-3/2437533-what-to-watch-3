@@ -1,5 +1,5 @@
 import {FilmType} from '../../types/film-type';
-import {FilmCardButtons} from './film-card-buttons';
+import {FilmCardButtons} from '../film-card-buttons/film-card-buttons';
 
 type FilmCardWrapProps = {
   film: FilmType;

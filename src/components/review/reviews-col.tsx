@@ -8,14 +8,12 @@ type ReviewsColProps = {
 
 
 export function ReviewsCol({reviews}: ReviewsColProps): JSX.Element {
-
   return (
     <div className="film-card__reviews-col">
       {
         reviews.map((r) => (
-          // eslint-disable-next-line react/jsx-key
-          <Review review={r}/>)
-        )
+          <Review key={r.id} review={r}/>
+        ))
       }
     </div>
   );

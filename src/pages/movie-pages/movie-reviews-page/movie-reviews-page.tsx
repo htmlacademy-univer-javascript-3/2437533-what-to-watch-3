@@ -1,8 +1,8 @@
 import {JSX, useEffect} from 'react';
-import {FilmCardNav} from '../../../components/film-card/film-card-nav';
+import {FilmCardNav} from '../../../components/film-card-nav/film-card-nav';
 import {ReviewsCol} from '../../../components/review/reviews-col';
 import {useAppDispatch, useAppSelector} from '../../../hooks';
-import {FilmCardHero} from '../../../components/film-card/film-card-hero';
+import {FilmCardHero} from '../../../components/film-card-hero/film-card-hero';
 import {PageContent} from '../../../components/page-content/page-content';
 import {useParams} from 'react-router-dom';
 import {
