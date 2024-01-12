@@ -7,8 +7,7 @@ import {useEffect} from 'react';
 
 export function UserBlock(): JSX.Element {
   const authStatus = useAppSelector((state) => state.authorizationStatus);
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
-  useEffect(() => { }, [authStatus]);
+  useEffect(() => undefined, [authStatus]);
 
 
   return(

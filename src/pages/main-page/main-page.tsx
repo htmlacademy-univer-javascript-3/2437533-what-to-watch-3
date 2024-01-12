@@ -7,9 +7,9 @@ import {FilmsListSorted} from '../../components/small-film-card/films-list-sorte
 import {useAppDispatch, useAppSelector} from '../../hooks';
 import {ShowMoreButton} from '../../components/show-more-button/show-more-button';
 import {Genre} from '../../consts/genres';
-import {PlayButton} from '../../components/buttons/play-button';
-import {AddToListButton} from '../../components/buttons/add-to-list-button';
-import {InListButton} from '../../components/buttons/in-list-button';
+import {PlayButton} from '../../components/play-button/play-button';
+import {AddToListButton} from '../../components/add-to-list-button/add-to-list-button';
+import {InListButton} from '../../components/in-list-button/in-list-button';
 import {resetCurrVisibleCount} from '../../store/action';
 
 

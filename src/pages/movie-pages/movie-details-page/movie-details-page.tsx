@@ -1,10 +1,10 @@
 import {JSX, useEffect} from 'react';
-import {FilmCardNav} from '../../../components/film-card/film-card-nav';
-import {FilmCardTextCol} from '../../../components/film-card/film-card-text-col';
-import {FilmCardTextRow} from '../../../components/film-card/film-card-text-row';
+import {FilmCardNav} from '../../../components/film-card-nav/film-card-nav';
+import {FilmCardTextCol} from '../../../components/film-card-text-col/film-card-text-col';
+import {FilmCardTextRow} from '../../../components/film-card-text-row/film-card-text-row';
 import {useAppDispatch, useAppSelector} from '../../../hooks';
 import {LoadingScreen} from '../../loading-screen/loading-screen';
-import {FilmCardHero} from '../../../components/film-card/film-card-hero';
+import {FilmCardHero} from '../../../components/film-card-hero/film-card-hero';
 import {PageContent} from '../../../components/page-content/page-content';
 import {useParams} from 'react-router-dom';
 import {

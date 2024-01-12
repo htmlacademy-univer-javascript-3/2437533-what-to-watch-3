@@ -23,15 +23,16 @@ function SmallFilmCard({imgSrc, name, filmId, videoLink}: SmallFilmCardProps): J
     }
 
     if (isPlaying) {
-      // eslint-disable-next-line @typescript-eslint/no-misused-promises
-      setTimeout(() => playerElement.play(), TIMEOUT_BEFORE_PLAYING);
+      setTimeout(() => {
+        playerElement.play();
+      }, TIMEOUT_BEFORE_PLAYING);
       return;
     }
 
+
     playerElement.pause();
   }, [isPlaying]);
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [_, setActiveCardId] = useState('-1');
+  const [, setActiveCardId] = useState('-1');
 
   return (
     <article className="small-film-card catalog__films-card" onMouseEnter={() => setActiveCardId(filmId)}

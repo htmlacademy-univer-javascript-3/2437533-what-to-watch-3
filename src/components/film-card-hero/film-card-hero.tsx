@@ -1,7 +1,7 @@
 import {FilmType} from '../../types/film-type';
 import {Logo} from '../logo/logo';
 import {UserBlock} from '../user-block/user-block';
-import {FilmCardWrap} from './film-card-wrap';
+import {FilmCardWrap} from '../film-card-wrap/film-card-wrap';
 
 type FilmCardHeroProps = {
   movie: FilmType;

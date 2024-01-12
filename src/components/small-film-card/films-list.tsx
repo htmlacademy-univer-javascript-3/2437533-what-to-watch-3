@@ -9,8 +9,7 @@ type FilmsListProps = {
 
 export function FilmsList({films}: FilmsListProps): JSX.Element {
 
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
-  useEffect(() => { }, [films]);
+  useEffect(() => undefined, [films]);
 
   return (
     <div className="catalog__films-list" >
